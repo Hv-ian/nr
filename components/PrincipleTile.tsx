@@ -1,6 +1,6 @@
-import type { BenefitItem } from "@/lib/translations";
+import type { PrincipleItem } from "@/lib/translations";
 
-export default function BenefitTile({ benefit }: { benefit: BenefitItem }) {
+export default function PrincipleTile({ principle }: { principle: PrincipleItem }) {
   return (
     <div className="rounded-2xl border border-border bg-background p-6 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10">
       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-accent">
@@ -20,9 +20,9 @@ export default function BenefitTile({ benefit }: { benefit: BenefitItem }) {
           />
         </svg>
       </div>
-      <h3 className="mt-4 font-semibold">{benefit.title}</h3>
+      <h3 className="mt-4 font-semibold">{principle.title}</h3>
       <p className="mt-1.5 text-sm leading-relaxed text-muted">
-        {benefit.description}
+        {principle.description}
       </p>
     </div>
   );

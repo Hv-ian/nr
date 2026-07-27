@@ -17,20 +17,17 @@ export const localeNames: Record<Locale, string> = {
 export type ServiceItem = {
   slug: string;
   title: string;
-  price: string;
   description: string;
   features: string[];
 };
 
-export type BenefitItem = {
+export type PrincipleItem = {
   title: string;
   description: string;
 };
 
-export type TestimonialItem = {
-  quote: string;
-  name: string;
-  role: string;
+export type StepItem = {
+  title: string;
 };
 
 export type FaqItem = {
@@ -39,38 +36,51 @@ export type FaqItem = {
 };
 
 export type Dictionary = {
+  brand: string;
   nav: {
     home: string;
     services: string;
     contact: string;
-    getQuote: string;
+    getConsultation: string;
     toggleMenu: string;
   };
   hero: {
     eyebrow: string;
-    headline: string;
+    headlinePre: string;
     headlineAccent: string;
+    headlineSuffix: string;
     sub: string;
+    subSecondary: string;
     ctaPrimary: string;
     ctaSecondary: string;
-    stats: { value: string; label: string }[];
   };
-  benefits: {
+  about: {
     eyebrow: string;
     heading: string;
-    items: BenefitItem[];
+    paragraphs: string[];
+  };
+  servicesOverview: {
+    eyebrow: string;
+    heading: string;
+    viewAll: string;
+    items: { slug: string; title: string }[];
   };
   services: {
     eyebrow: string;
     heading: string;
-    viewAll: string;
-    requestQuote: string;
+    sub: string;
+    getConsultation: string;
     items: ServiceItem[];
   };
-  testimonials: {
+  principles: {
     eyebrow: string;
     heading: string;
-    items: TestimonialItem[];
+    items: PrincipleItem[];
+  };
+  howWeWork: {
+    eyebrow: string;
+    heading: string;
+    steps: StepItem[];
   };
   cta: {
     heading: string;
@@ -91,6 +101,20 @@ export type Dictionary = {
     faqHeading: string;
     directHeading: string;
     faqs: FaqItem[];
+    contacts: {
+      addressLabel: string;
+      phoneLabel: string;
+      emailLabel: string;
+      whatsappLabel: string;
+      telegramLabel: string;
+      addressValue: string;
+      phoneValue: string;
+      emailValue: string;
+      whatsappValue: string;
+      whatsappHref: string;
+      telegramValue: string;
+      telegramHref: string;
+    };
     form: {
       nameLabel: string;
       namePlaceholder: string;
@@ -116,205 +140,231 @@ export type Dictionary = {
   };
   footer: {
     tagline: string;
-    requestQuote: string;
+    getConsultation: string;
     rights: string;
   };
 };
 
 export const translations: Record<Locale, Dictionary> = {
   en: {
+    brand: "ReloPartner Armenia",
     nav: {
       home: "Home",
       services: "Services",
       contact: "Contact",
-      getQuote: "Get a Quote",
+      getConsultation: "Get a Consultation",
       toggleMenu: "Toggle menu",
     },
     hero: {
-      eyebrow: "Business setup in Armenia",
-      headline: "Launch your business in Armenia with",
-      headlineAccent: "taxes from 0%",
-      sub: "Remote company registration, accounting, and residency support. Tell us what you need and get a tailored quote back within the hour.",
-      ctaPrimary: "Get a Quote",
+      eyebrow: "Relocation to Armenia",
+      headlinePre: "Comprehensive relocation support for the ",
+      headlineAccent: "Republic of Armenia",
+      headlineSuffix: "",
+      sub: "We support individuals, entrepreneurs, and companies at every stage of relocation, providing professional migration, corporate, and accounting support.",
+      subSecondary:
+        "From obtaining a residence permit and registering a business to accounting support and liaising with government authorities, we offer comprehensive solutions that let our clients focus on their personal goals and business growth.",
+      ctaPrimary: "Get a Consultation",
       ctaSecondary: "View Services",
-      stats: [
-        { value: "500+", label: "Companies registered" },
-        { value: "5 days", label: "Average setup time" },
-        { value: "0%", label: "Tax rate for IT" },
+    },
+    about: {
+      eyebrow: "About Us",
+      heading: "About ReloPartner Armenia",
+      paragraphs: [
+        "ReloPartner Armenia is a consulting company specializing in supporting individuals and businesses in the Republic of Armenia.",
+        "We provide a full range of migration, corporate, and accounting services. Our team supports clients at every stage, ensuring professional guidance, transparent processes, and a personalized approach.",
+        "Our goal is to make the process of relocating, establishing legal status, and running a business as comfortable and efficient as possible.",
       ],
     },
-    benefits: {
-      eyebrow: "Why Armenia",
-      heading: "Built for founders who want to move fast",
+    servicesOverview: {
+      eyebrow: "Services",
+      heading: "What we help with",
+      viewAll: "View all services",
       items: [
-        {
-          title: "0% Tax for IT",
-          description: "IT companies can qualify for a 0% profit tax rate.",
-        },
-        {
-          title: "100% Foreign Ownership",
-          description: "No local partner or shareholder required.",
-        },
-        {
-          title: "No Office Required",
-          description: "Register a company without renting physical space.",
-        },
-        {
-          title: "Fully Remote Setup",
-          description: "Handle registration without visiting Armenia in person.",
-        },
-        {
-          title: "49 Double Tax Treaties",
-          description: "Avoid being taxed twice on the same income.",
-        },
-        {
-          title: "Fast Turnaround",
-          description: "Most registrations complete in days, not months.",
-        },
+        { slug: "residence-permit", title: "Residence Permit" },
+        { slug: "citizenship", title: "Citizenship of Armenia" },
+        { slug: "ip-registration", title: "Individual Entrepreneur Registration" },
+        { slug: "llc-registration", title: "Legal Entity Registration" },
+        { slug: "work-permit", title: "Work Permit" },
+        { slug: "migration-support", title: "Comprehensive Migration Support" },
+        { slug: "accounting", title: "Accounting & Tax Support" },
       ],
     },
     services: {
       eyebrow: "Services",
-      heading: "Popular services",
-      viewAll: "View all services",
-      requestQuote: "Request Quote",
+      heading: "Our services",
+      sub: "Explore our full range of relocation, business, and accounting services.",
+      getConsultation: "Get a Consultation",
       items: [
-        {
-          slug: "llc-registration",
-          title: "LLC / Company Registration",
-          price: "From $1,000",
-          description:
-            "Remote company formation with charter, bank account assistance, and tax registration. No travel required.",
-          features: [
-            "Full company registration",
-            "Bank account assistance",
-            "Tax registration & setup",
-            "1-year registered address",
-          ],
-        },
-        {
-          slug: "pe-registration",
-          title: "Individual Entrepreneur Setup",
-          price: "From $500",
-          description:
-            "The fastest way to start operating in Armenia as a sole entrepreneur, fully remote.",
-          features: [
-            "PE registration",
-            "Bank account assistance",
-            "Tax registration",
-            "Social security number",
-          ],
-        },
-        {
-          slug: "accounting",
-          title: "Accounting & Bookkeeping",
-          price: "From $100/mo",
-          description:
-            "Ongoing tax filing and reporting handled by licensed local accountants.",
-          features: [
-            "Monthly tax filing",
-            "Bookkeeping",
-            "Compliance & reporting",
-            "Direct accountant access",
-          ],
-        },
         {
           slug: "residence-permit",
           title: "Residence Permit",
-          price: "$500 to $1,500",
           description:
-            "Document prep, translations, and application support for temporary residency in Armenia.",
+            "Full support in obtaining a temporary or permanent residence permit in the Republic of Armenia.",
           features: [
+            "Eligibility assessment",
             "Document preparation",
-            "Notarized translations",
             "Application support",
-            "Social card registration",
+            "Liaison with government authorities",
+            "Issuance of the resident card",
           ],
         },
         {
-          slug: "consultation",
-          title: "Expert Consultation",
-          price: "$200",
+          slug: "citizenship",
+          title: "Citizenship of Armenia",
           description:
-            "A focused 45-minute session covering registration, taxes, banking, or relocation questions.",
+            "Support throughout the process of acquiring citizenship of the Republic of Armenia. Our specialists conduct a preliminary assessment, help prepare documents, and accompany the client through to completion.",
+          features: [],
+        },
+        {
+          slug: "ip-registration",
+          title: "Individual Entrepreneur Registration",
+          description:
+            "Registration of an individual entrepreneur in Armenia, including document preparation, registration, and assistance opening a bank account.",
           features: [
-            "45-minute video call",
-            "Personalized guidance",
-            "Follow-up notes",
-            "No commitment required",
+            "Document preparation",
+            "Business registration",
+            "Registration data & tax ID",
+            "Bank account assistance",
+            "Ongoing support",
+          ],
+        },
+        {
+          slug: "llc-registration",
+          title: "Legal Entity Registration",
+          description:
+            "Formation of companies in Armenia, including document preparation, registration, and assistance opening a bank account.",
+          features: [
+            "Document preparation",
+            "Company registration",
+            "Registration data & tax ID",
+            "Bank account assistance",
+            "Ongoing support",
+          ],
+        },
+        {
+          slug: "work-permit",
+          title: "Work Permit",
+          description:
+            "Support in obtaining a work permit for employment in the Republic of Armenia.",
+          features: [],
+        },
+        {
+          slug: "migration-support",
+          title: "Comprehensive Migration Support",
+          description:
+            "End-to-end migration support covering every stage of relocating to Armenia.",
+          features: [],
+        },
+        {
+          slug: "accounting",
+          title: "Accounting & Tax Support",
+          description: "Comprehensive accounting and tax support for individuals and businesses.",
+          features: [
+            "Bookkeeping",
+            "Tax accounting",
+            "Payroll calculation",
+            "HR support",
+            "Preparation and filing of reports",
+            "Tax consulting",
           ],
         },
       ],
     },
-    testimonials: {
-      eyebrow: "Client stories",
-      heading: "What clients say",
+    principles: {
+      eyebrow: "Our Principles",
+      heading: "What guides our work",
       items: [
         {
-          quote:
-            "They handled everything. Legal registration, banking, ongoing accounting. One less thing for me to worry about.",
-          name: "Ilya K.",
-          role: "CEO at DSML",
+          title: "Professionalism",
+          description: "We maintain high standards of quality and pay attention to every detail.",
         },
         {
-          quote:
-            "I registered as a sole entrepreneur and opened a bank account entirely remotely. The process was faster than I expected.",
-          name: "Milita N.",
-          role: "PE, Game Designer",
+          title: "Personalized Approach",
+          description:
+            "Every situation calls for a tailored solution that reflects the client's goals and circumstances.",
         },
         {
-          quote:
-            "Reliable and responsive from day one. We've recommended them to several partners since.",
-          name: "Konstantin I.",
-          role: "CEO at Taptima",
+          title: "Confidentiality",
+          description:
+            "We protect client information and uphold confidentiality at every stage of our work together.",
         },
+        {
+          title: "Responsibility",
+          description:
+            "We stay with the client until the result is achieved, providing professional support at every step.",
+        },
+      ],
+    },
+    howWeWork: {
+      eyebrow: "How We Work",
+      heading: "Our process",
+      steps: [
+        { title: "Consultation" },
+        { title: "Document Preparation" },
+        { title: "Procedure Support" },
+        { title: "Achieving the Result" },
+        { title: "Ongoing Support" },
       ],
     },
     cta: {
-      heading: "Ready to get started?",
-      sub: "Send us a few details about your business and we'll follow up with a quote, usually within the hour.",
-      button: "Get a Quote",
+      heading: "Start your relocation with a reliable partner",
+      sub: "Whether you're planning to relocate, register a business, obtain a residence permit, or need accounting support, the ReloPartner Armenia team is ready to offer professional solutions and comprehensive support at every stage. Contact us for a personal consultation and to discuss the best way to work together.",
+      button: "Get a Consultation",
     },
     servicesPage: {
       eyebrow: "Services",
-      heading: "Everything you need to set up and run a business in Armenia",
-      sub: "Pick a service to request a tailored quote. A real person will follow up, usually within the hour.",
-      notSureHeading: "Not sure which service fits?",
-      notSureSub: "Book a short consultation and we'll point you in the right direction.",
+      heading: "Our services",
+      sub: "Explore our full range of relocation, business, and accounting services.",
+      notSureHeading: "Not sure which service you need?",
+      notSureSub: "Get in touch and we'll help you find the right solution.",
     },
     contactPage: {
       eyebrow: "Contact",
-      heading: "Tell us what you need",
-      sub: "Fill out the form and we'll get back to you with a tailored quote, usually within the hour.",
+      heading: "Get a Consultation",
+      sub: "Fill out the form below and our team will get back to you to discuss the details.",
       faqHeading: "Frequently asked questions",
-      directHeading: "Prefer to reach out directly?",
+      directHeading: "Contact details",
       faqs: [
         {
-          question: "How do I get a quote?",
+          question: "What services does the company provide?",
           answer:
-            "Fill out the form with a few details about your situation. We typically respond within an hour with a tailored quote and next steps.",
+            "We provide comprehensive support with relocation, residence permits, citizenship, business registration, accounting services, work permits, and related matters.",
         },
         {
-          question: "Do I need to be in Armenia to register a company?",
+          question: "Can support be provided remotely?",
           answer:
-            "No. Registration can be handled remotely with a notarized power of attorney and translated passport.",
+            "Yes. Depending on the nature of the service, certain procedures can be arranged remotely in accordance with legal requirements.",
         },
         {
-          question: "How long does registration take?",
+          question: "How long does the process take?",
           answer:
-            "Most PE and LLC registrations are completed within a few business days once documents are ready.",
+            "Timing depends on the selected service, the grounds for the application, and government requirements. After a consultation, we provide an individual work plan with estimated timelines for each stage.",
         },
         {
-          question: "Which tax system is right for me?",
+          question: "Do you work with businesses?",
           answer:
-            "It depends on your turnover and industry. We'll walk you through the options (microentrepreneurship, turnover tax, or general taxation) during your consultation.",
+            "Yes. We support individual entrepreneurs, organizations, and international companies, providing comprehensive solutions for operating in the Republic of Armenia.",
         },
         {
-          question: "Can I open a bank account remotely?",
+          question: "Do you offer consultations?",
           answer:
-            "Personal presence is currently required to open a bank account in Armenia, but we guide you through the entire process when you arrive.",
+            "Yes. Our specialists provide individual consultations to help determine the best course of action.",
         },
       ],
+      contacts: {
+        addressLabel: "Office Address",
+        phoneLabel: "Phone",
+        emailLabel: "E-mail",
+        whatsappLabel: "WhatsApp",
+        telegramLabel: "Telegram",
+        addressValue: "Yerevan, Armenia",
+        phoneValue: "+374 00 000 000",
+        emailValue: "hello@relopartner.am",
+        whatsappValue: "+374 00 000 000",
+        whatsappHref: "https://wa.me/37400000000",
+        telegramValue: "@relopartner",
+        telegramHref: "https://t.me/relopartner",
+      },
       form: {
         nameLabel: "Name",
         namePlaceholder: "Your full name",
@@ -328,7 +378,7 @@ export const translations: Record<Locale, Dictionary> = {
         otherOption: "Other / Not sure",
         messageLabel: "Message",
         messagePlaceholder: "Tell us a bit about what you need...",
-        submit: "Request Quote",
+        submit: "Get a Consultation",
         nameRequired: "Name is required.",
         emailRequired: "Email is required.",
         emailInvalid: "Enter a valid email address.",
@@ -340,204 +390,227 @@ export const translations: Record<Locale, Dictionary> = {
       },
     },
     footer: {
-      tagline: "Business registration, accounting, and residency support in Armenia.",
-      requestQuote: "Request a quote",
+      tagline: "Comprehensive relocation, business, and accounting support in Armenia.",
+      getConsultation: "Get a consultation",
       rights: "All rights reserved.",
     },
   },
   ru: {
+    brand: "ReloPartner Armenia",
     nav: {
       home: "Главная",
       services: "Услуги",
       contact: "Контакты",
-      getQuote: "Получить смету",
+      getConsultation: "Получить консультацию",
       toggleMenu: "Открыть меню",
     },
     hero: {
-      eyebrow: "Регистрация бизнеса в Армении",
-      headline: "Запустите бизнес в Армении с",
-      headlineAccent: "налогом от 0%",
-      sub: "Удалённая регистрация компании, бухгалтерия и поддержка по виду на жительство. Расскажите, что вам нужно, и получите индивидуальную смету в течение часа.",
-      ctaPrimary: "Получить смету",
+      eyebrow: "Релокация в Армению",
+      headlinePre: "Комплексное сопровождение релокации в ",
+      headlineAccent: "Республику Армения",
+      headlineSuffix: "",
+      sub: "Мы сопровождаем физических лиц, предпринимателей и компании на всех этапах релокации, обеспечивая профессиональную миграционную, корпоративную и бухгалтерскую поддержку.",
+      subSecondary:
+        "От получения вида на жительство и регистрации бизнеса до бухгалтерского сопровождения и взаимодействия с государственными органами мы предлагаем комплексные решения, позволяющие нашим клиентам сосредоточиться на личных целях и развитии бизнеса.",
+      ctaPrimary: "Получить консультацию",
       ctaSecondary: "Смотреть услуги",
-      stats: [
-        { value: "500+", label: "Зарегистрированных компаний" },
-        { value: "5 дней", label: "Среднее время регистрации" },
-        { value: "0%", label: "Налог для IT" },
+    },
+    about: {
+      eyebrow: "О компании",
+      heading: "О компании ReloPartner Armenia",
+      paragraphs: [
+        "ReloPartner Armenia является консалтинговой компанией, специализирующейся на сопровождении физических лиц и бизнеса в Республике Армения.",
+        "Мы предоставляем полный спектр миграционных, корпоративных и бухгалтерских услуг. Наша команда сопровождает клиентов на каждом этапе, обеспечивая профессиональную поддержку, прозрачность процессов и индивидуальный подход.",
+        "Наша цель заключается в том, чтобы сделать процесс переезда, оформления правового статуса и ведения бизнеса максимально комфортным и эффективным.",
       ],
     },
-    benefits: {
-      eyebrow: "Почему Армения",
-      heading: "Создано для тех, кто хочет действовать быстро",
+    servicesOverview: {
+      eyebrow: "Услуги",
+      heading: "В чем мы помогаем",
+      viewAll: "Все услуги",
       items: [
-        {
-          title: "0% налог для IT",
-          description: "IT-компании могут претендовать на нулевую ставку налога на прибыль.",
-        },
-        {
-          title: "100% иностранное владение",
-          description: "Локальный партнёр или акционер не требуется.",
-        },
-        {
-          title: "Офис не обязателен",
-          description: "Зарегистрируйте компанию без аренды физического офиса.",
-        },
-        {
-          title: "Полностью удалённо",
-          description: "Пройдите регистрацию без личного визита в Армению.",
-        },
-        {
-          title: "49 соглашений об избежании двойного налогообложения",
-          description: "Не платите налог дважды с одного и того же дохода.",
-        },
-        {
-          title: "Быстрые сроки",
-          description: "Большинство регистраций занимает дни, а не месяцы.",
-        },
+        { slug: "residence-permit", title: "Вид на жительство" },
+        { slug: "citizenship", title: "Гражданство Республики Армения" },
+        { slug: "ip-registration", title: "Регистрация ИП" },
+        { slug: "llc-registration", title: "Регистрация юридических лиц" },
+        { slug: "work-permit", title: "Разрешение на работу (Work Permit)" },
+        { slug: "migration-support", title: "Комплексное миграционное сопровождение" },
+        { slug: "accounting", title: "Бухгалтерское и налоговое сопровождение" },
       ],
     },
     services: {
       eyebrow: "Услуги",
-      heading: "Популярные услуги",
-      viewAll: "Все услуги",
-      requestQuote: "Получить смету",
+      heading: "Наши услуги",
+      sub: "Ознакомьтесь с полным спектром услуг по релокации, бизнесу и бухгалтерии.",
+      getConsultation: "Получить консультацию",
       items: [
-        {
-          slug: "llc-registration",
-          title: "Регистрация ООО / компании",
-          price: "От $1 000",
-          description:
-            "Удалённое создание компании: устав, помощь с открытием счёта и налоговая регистрация. Без поездок.",
-          features: [
-            "Полная регистрация компании",
-            "Помощь с открытием банковского счёта",
-            "Налоговая регистрация и настройка",
-            "Юридический адрес на 1 год",
-          ],
-        },
-        {
-          slug: "pe-registration",
-          title: "Регистрация ИП",
-          price: "От $500",
-          description:
-            "Самый быстрый способ начать работать в Армении как индивидуальный предприниматель, полностью удалённо.",
-          features: [
-            "Регистрация ИП",
-            "Помощь с открытием банковского счёта",
-            "Налоговая регистрация",
-            "Социальный номер (SSN)",
-          ],
-        },
-        {
-          slug: "accounting",
-          title: "Бухгалтерия и учёт",
-          price: "От $100/мес",
-          description:
-            "Постоянная подача налоговой отчётности силами лицензированных местных бухгалтеров.",
-          features: [
-            "Ежемесячная налоговая отчётность",
-            "Бухгалтерский учёт",
-            "Контроль соответствия и отчётность",
-            "Прямой доступ к бухгалтеру",
-          ],
-        },
         {
           slug: "residence-permit",
           title: "Вид на жительство",
-          price: "От $500 до $1 500",
           description:
-            "Подготовка документов, переводы и сопровождение заявки на временное проживание в Армении.",
+            "Полное сопровождение процедуры получения временного и постоянного вида на жительство в Республике Армения.",
           features: [
+            "Анализ оснований",
             "Подготовка документов",
-            "Нотариальный перевод",
-            "Сопровождение заявки",
-            "Оформление социальной карты",
+            "Сопровождение подачи",
+            "Взаимодействие с государственными органами",
+            "Получение карты резидента",
           ],
         },
         {
-          slug: "consultation",
-          title: "Консультация эксперта",
-          price: "$200",
+          slug: "citizenship",
+          title: "Гражданство",
           description:
-            "Сфокусированная 45-минутная сессия по регистрации, налогам, банкам или переезду.",
+            "Сопровождение процедуры приобретения гражданства Республики Армения. Наши специалисты проводят предварительный анализ, помогают подготовить документы и сопровождают клиента до завершения процедуры.",
+          features: [],
+        },
+        {
+          slug: "ip-registration",
+          title: "Регистрация ИП",
+          description:
+            "Регистрация индивидуального предпринимателя в Армении: подготовка документов, регистрация и помощь при открытии банковского счета.",
           features: [
-            "45-минутный видеозвонок",
-            "Персональные рекомендации",
-            "Заметки по итогам встречи",
-            "Без обязательств",
+            "Подготовка документов",
+            "Регистрация бизнеса",
+            "Получение регистрационных данных",
+            "Помощь при открытии банковского счета",
+            "Дальнейшее сопровождение",
+          ],
+        },
+        {
+          slug: "llc-registration",
+          title: "Регистрация юридических лиц",
+          description:
+            "Создание компаний в Армении: подготовка документов, регистрация и помощь при открытии банковского счета.",
+          features: [
+            "Подготовка документов",
+            "Регистрация бизнеса",
+            "Получение регистрационных данных",
+            "Помощь при открытии банковского счета",
+            "Дальнейшее сопровождение",
+          ],
+        },
+        {
+          slug: "work-permit",
+          title: "Разрешение на работу",
+          description: "Сопровождение получения разрешения на работу в Республике Армения.",
+          features: [],
+        },
+        {
+          slug: "migration-support",
+          title: "Комплексное миграционное сопровождение",
+          description: "Полное сопровождение на всех этапах переезда в Армению.",
+          features: [],
+        },
+        {
+          slug: "accounting",
+          title: "Бухгалтерские услуги",
+          description: "Комплексное бухгалтерское и налоговое сопровождение.",
+          features: [
+            "Бухгалтерский учет",
+            "Налоговый учет",
+            "Расчет заработной платы",
+            "Кадровое сопровождение",
+            "Подготовка и сдача отчетности",
+            "Консультации по вопросам налогообложения",
           ],
         },
       ],
     },
-    testimonials: {
-      eyebrow: "Отзывы клиентов",
-      heading: "Что говорят клиенты",
+    principles: {
+      eyebrow: "Наши принципы",
+      heading: "На чем строится наша работа",
       items: [
         {
-          quote:
-            "Они взяли на себя всё: юридическую регистрацию, банк, текущую бухгалтерию. Одной заботой меньше.",
-          name: "Илья К.",
-          role: "CEO, DSML",
+          title: "Профессионализм",
+          description: "Мы придерживаемся высоких стандартов качества и уделяем внимание каждой детали.",
         },
         {
-          quote:
-            "Я зарегистрировал ИП и открыл банковский счёт полностью удалённо. Процесс прошёл быстрее, чем я ожидал.",
-          name: "Милита Н.",
-          role: "ИП, геймдизайнер",
+          title: "Индивидуальный подход",
+          description: "Каждая ситуация требует персонального решения с учетом целей и особенностей клиента.",
         },
         {
-          quote:
-            "Надёжно и оперативно с первого дня. С тех пор рекомендуем их партнёрам.",
-          name: "Константин И.",
-          role: "CEO, Taptima",
+          title: "Конфиденциальность",
+          description:
+            "Мы обеспечиваем защиту информации и соблюдение принципов конфиденциальности на всех этапах сотрудничества.",
         },
+        {
+          title: "Ответственность",
+          description:
+            "Мы сопровождаем клиента до достижения результата, обеспечивая профессиональную поддержку на каждом этапе.",
+        },
+      ],
+    },
+    howWeWork: {
+      eyebrow: "Как мы работаем",
+      heading: "Наш процесс",
+      steps: [
+        { title: "Консультация" },
+        { title: "Подготовка документов" },
+        { title: "Сопровождение процедур" },
+        { title: "Получение результата" },
+        { title: "Дальнейшая поддержка клиента" },
       ],
     },
     cta: {
-      heading: "Готовы начать?",
-      sub: "Расскажите немного о своём бизнесе, и мы свяжемся с вами со сметой, обычно в течение часа.",
-      button: "Получить смету",
+      heading: "Начните процесс релокации с надежным партнером",
+      sub: "Независимо от того, планируете ли вы переезд, регистрацию бизнеса, получение вида на жительство или бухгалтерское сопровождение деятельности, команда ReloPartner Armenia готова предложить профессиональные решения и обеспечить комплексную поддержку на каждом этапе. Свяжитесь с нами, чтобы получить персональную консультацию и обсудить оптимальный формат сотрудничества.",
+      button: "Получить консультацию",
     },
     servicesPage: {
       eyebrow: "Услуги",
-      heading: "Всё необходимое для запуска и ведения бизнеса в Армении",
-      sub: "Выберите услугу, чтобы получить индивидуальную смету. Реальный человек свяжется с вами, обычно в течение часа.",
-      notSureHeading: "Не уверены, какая услуга подойдёт?",
-      notSureSub: "Запишитесь на короткую консультацию, и мы поможем определиться.",
+      heading: "Наши услуги",
+      sub: "Ознакомьтесь с полным спектром услуг по релокации, бизнесу и бухгалтерии.",
+      notSureHeading: "Не уверены, какая услуга вам нужна?",
+      notSureSub: "Свяжитесь с нами, и мы поможем найти подходящее решение.",
     },
     contactPage: {
       eyebrow: "Контакты",
-      heading: "Расскажите, что вам нужно",
-      sub: "Заполните форму, и мы свяжемся с вами с индивидуальной сметой, обычно в течение часа.",
+      heading: "Получить консультацию",
+      sub: "Заполните форму ниже, и наша команда свяжется с вами для обсуждения деталей.",
       faqHeading: "Часто задаваемые вопросы",
-      directHeading: "Хотите связаться напрямую?",
+      directHeading: "Контактные данные",
       faqs: [
         {
-          question: "Как получить смету?",
+          question: "Какие услуги предоставляет компания?",
           answer:
-            "Заполните форму, указав несколько деталей о вашей ситуации. Обычно мы отвечаем в течение часа со сметой и дальнейшими шагами.",
+            "Мы оказываем комплексное сопровождение по вопросам релокации, получения вида на жительство, гражданства, регистрации бизнеса, бухгалтерского обслуживания, оформления разрешений на работу и другим сопутствующим вопросам.",
         },
         {
-          question: "Нужно ли мне быть в Армении для регистрации компании?",
+          question: "Можно ли получить сопровождение дистанционно?",
           answer:
-            "Нет. Регистрацию можно провести удалённо по нотариальной доверенности и переведённому паспорту.",
+            "Да. В зависимости от характера услуги отдельные процедуры могут быть организованы дистанционно в соответствии с требованиями законодательства.",
         },
         {
-          question: "Сколько занимает регистрация?",
+          question: "Сколько времени занимает оформление?",
           answer:
-            "Большинство регистраций ИП и ООО завершается за несколько рабочих дней после подготовки документов.",
+            "Срок зависит от выбранной услуги, основания обращения и требований государственных органов. После консультации мы предоставляем индивидуальный план работы с ориентировочными сроками каждого этапа.",
         },
         {
-          question: "Какая система налогообложения мне подходит?",
+          question: "Работаете ли вы с бизнесом?",
           answer:
-            "Зависит от оборота и вида деятельности. Мы разберём варианты (микропредпринимательство, оборотный налог или общая система) на консультации.",
+            "Да. Мы сопровождаем индивидуальных предпринимателей, организации и международные компании, предоставляя комплексные решения для ведения деятельности в Республике Армения.",
         },
         {
-          question: "Можно ли открыть банковский счёт удалённо?",
+          question: "Предоставляете ли вы консультации?",
           answer:
-            "На данный момент для открытия счёта в Армении требуется личное присутствие, но мы сопроводим вас на всех этапах по приезде.",
+            "Да. Наши специалисты проводят индивидуальные консультации, позволяющие определить оптимальный порядок дальнейших действий.",
         },
       ],
+      contacts: {
+        addressLabel: "Адрес офиса",
+        phoneLabel: "Телефон",
+        emailLabel: "E-mail",
+        whatsappLabel: "WhatsApp",
+        telegramLabel: "Telegram",
+        addressValue: "Ереван, Армения",
+        phoneValue: "+374 00 000 000",
+        emailValue: "hello@relopartner.am",
+        whatsappValue: "+374 00 000 000",
+        whatsappHref: "https://wa.me/37400000000",
+        telegramValue: "@relopartner",
+        telegramHref: "https://t.me/relopartner",
+      },
       form: {
         nameLabel: "Имя",
         namePlaceholder: "Ваше полное имя",
@@ -551,7 +624,7 @@ export const translations: Record<Locale, Dictionary> = {
         otherOption: "Другое / Не уверен",
         messageLabel: "Сообщение",
         messagePlaceholder: "Расскажите немного о том, что вам нужно...",
-        submit: "Получить смету",
+        submit: "Получить консультацию",
         nameRequired: "Укажите имя.",
         emailRequired: "Укажите email.",
         emailInvalid: "Введите корректный email.",
@@ -563,204 +636,228 @@ export const translations: Record<Locale, Dictionary> = {
       },
     },
     footer: {
-      tagline: "Регистрация бизнеса, бухгалтерия и поддержка по виду на жительство в Армении.",
-      requestQuote: "Получить смету",
+      tagline: "Комплексное сопровождение релокации, бизнеса и бухгалтерии в Армении.",
+      getConsultation: "Получить консультацию",
       rights: "Все права защищены.",
     },
   },
   hy: {
+    brand: "ReloPartner Armenia",
     nav: {
       home: "Գլխավոր",
       services: "Ծառայություններ",
       contact: "Կապ",
-      getQuote: "Ստանալ գնանշում",
+      getConsultation: "Ստանալ խորհրդատվություն",
       toggleMenu: "Բացել ընտրացանկը",
     },
     hero: {
-      eyebrow: "Բիզնեսի գրանցում Հայաստանում",
-      headline: "Սկսեք ձեր բիզնեսը Հայաստանում՝",
-      headlineAccent: "հարկերով 0%-ից",
-      sub: "Հեռավար ընկերության գրանցում, հաշվապահություն և կացության թույլտվության աջակցություն։ Պատմեք, թե ինչ է ձեզ անհրաժեշտ, և ստացեք անհատական գնանշում մեկ ժամվա ընթացքում։",
-      ctaPrimary: "Ստանալ գնանշում",
+      eyebrow: "Տեղափոխություն Հայաստան",
+      headlinePre: "Համալիր աջակցում ",
+      headlineAccent: "Հայաստանի Հանրապետություն",
+      headlineSuffix: " տեղափոխվելու համար",
+      sub: "Մենք աջակցում ենք ֆիզիկական անձանց, ձեռնարկատերերին և ընկերություններին տեղափոխության բոլոր փուլերում՝ ապահովելով պրոֆեսիոնալ միգրացիոն, կորպորատիվ և հաշվապահական աջակցություն։",
+      subSecondary:
+        "Կացության թույլտվության ստացումից և բիզնեսի գրանցումից մինչև հաշվապահական սպասարկում և պետական մարմինների հետ փոխգործակցություն՝ մենք առաջարկում ենք համալիր լուծումներ, որոնք թույլ են տալիս մեր հաճախորդներին կենտրոնանալ անձնական նպատակների և բիզնեսի զարգացման վրա։",
+      ctaPrimary: "Ստանալ խորհրդատվություն",
       ctaSecondary: "Դիտել ծառայությունները",
-      stats: [
-        { value: "500+", label: "Գրանցված ընկերություններ" },
-        { value: "5 օր", label: "Միջին գրանցման ժամկետ" },
-        { value: "0%", label: "Հարկ IT ընկերությունների համար" },
+    },
+    about: {
+      eyebrow: "Մեր մասին",
+      heading: "ReloPartner Armenia ընկերության մասին",
+      paragraphs: [
+        "ReloPartner Armenia-ն խորհրդատվական ընկերություն է, որը մասնագիտացած է Հայաստանի Հանրապետությունում ֆիզիկական անձանց և բիզնեսի սպասարկման ոլորտում։",
+        "Մենք տրամադրում ենք միգրացիոն, կորպորատիվ և հաշվապահական ծառայությունների լրիվ շրջանակ։ Մեր թիմն ուղեկցում է հաճախորդներին յուրաքանչյուր փուլում՝ ապահովելով պրոֆեսիոնալ աջակցություն, գործընթացների թափանցիկություն և անհատական մոտեցում։",
+        "Մեր նպատակն է տեղափոխության, իրավական կարգավիճակի ձևակերպման և բիզնես վարելու գործընթացը դարձնել հնարավորինս հարմարավետ և արդյունավետ։",
       ],
     },
-    benefits: {
-      eyebrow: "Ինչու Հայաստան",
-      heading: "Ստեղծված է արագ գործող հիմնադիրների համար",
+    servicesOverview: {
+      eyebrow: "Ծառայություններ",
+      heading: "Ինչում ենք օգնում",
+      viewAll: "Բոլոր ծառայությունները",
       items: [
-        {
-          title: "0% հարկ IT ոլորտի համար",
-          description: "IT ընկերությունները կարող են ստանալ շահույթահարկի 0% դրույքաչափ։",
-        },
-        {
-          title: "100% օտարերկրյա սեփականություն",
-          description: "Տեղական գործընկեր կամ բաժնետեր չի պահանջվում։",
-        },
-        {
-          title: "Գրասենյակ պարտադիր չէ",
-          description: "Գրանցեք ընկերություն առանց ֆիզիկական տարածք վարձակալելու։",
-        },
-        {
-          title: "Ամբողջովին հեռավար",
-          description: "Իրականացրեք գրանցումը առանց Հայաստան անձամբ այցելելու։",
-        },
-        {
-          title: "49 կրկնակի հարկումից խուսափելու համաձայնագիր",
-          description: "Խուսափեք միևնույն եկամուտից երկու անգամ հարկվելուց։",
-        },
-        {
-          title: "Արագ ժամկետներ",
-          description: "Գրանցումների մեծ մասն ավարտվում է օրերի, ոչ թե ամիսների ընթացքում։",
-        },
+        { slug: "residence-permit", title: "Կացության թույլտվություն" },
+        { slug: "citizenship", title: "Հայաստանի Հանրապետության քաղաքացիություն" },
+        { slug: "ip-registration", title: "ԱՁ գրանցում" },
+        { slug: "llc-registration", title: "Իրավաբանական անձանց գրանցում" },
+        { slug: "work-permit", title: "Աշխատանքի թույլտվություն (Work Permit)" },
+        { slug: "migration-support", title: "Համալիր միգրացիոն աջակցություն" },
+        { slug: "accounting", title: "Հաշվապահական և հարկային աջակցություն" },
       ],
     },
     services: {
       eyebrow: "Ծառայություններ",
-      heading: "Ամենապահանջված ծառայությունները",
-      viewAll: "Բոլոր ծառայությունները",
-      requestQuote: "Ստանալ գնանշում",
+      heading: "Մեր ծառայությունները",
+      sub: "Ծանոթացեք տեղափոխության, բիզնեսի և հաշվապահության ոլորտում մեր ծառայությունների ամբողջական շրջանակին։",
+      getConsultation: "Ստանալ խորհրդատվություն",
       items: [
-        {
-          slug: "llc-registration",
-          title: "ՍՊԸ / ընկերության գրանցում",
-          price: "$1,000-ից",
-          description:
-            "Ընկերության հեռավար հիմնում՝ կանոնադրություն, բանկային հաշվի բացման աջակցություն և հարկային գրանցում։ Ուղևորություն չի պահանջվում։",
-          features: [
-            "Ընկերության ամբողջական գրանցում",
-            "Բանկային հաշվի բացման աջակցություն",
-            "Հարկային գրանցում և կարգավորում",
-            "Գրանցված հասցե 1 տարով",
-          ],
-        },
-        {
-          slug: "pe-registration",
-          title: "Անհատ ձեռնարկատիրոջ գրանցում",
-          price: "$500-ից",
-          description:
-            "Ամենաարագ ձևը Հայաստանում որպես անհատ ձեռնարկատեր գործունեություն սկսելու համար, ամբողջովին հեռավար։",
-          features: [
-            "ԱՁ գրանցում",
-            "Բանկային հաշվի բացման աջակցություն",
-            "Հարկային գրանցում",
-            "Սոցիալական քարտի ձևակերպում",
-          ],
-        },
-        {
-          slug: "accounting",
-          title: "Հաշվապահություն և հաշվառում",
-          price: "$100/ամսից",
-          description:
-            "Հարկային հաշվետվությունների մշտական վարում լիցենզավորված տեղական հաշվապահների կողմից։",
-          features: [
-            "Ամսական հարկային հաշվետվություն",
-            "Հաշվապահական հաշվառում",
-            "Համապատասխանության վերահսկում",
-            "Ուղղակի կապ հաշվապահի հետ",
-          ],
-        },
         {
           slug: "residence-permit",
           title: "Կացության թույլտվություն",
-          price: "$500-ից $1,500",
           description:
-            "Փաստաթղթերի պատրաստում, թարգմանություններ և աջակցություն Հայաստանում ժամանակավոր կացության դիմումի համար։",
+            "Հայաստանի Հանրապետությունում ժամանակավոր և մշտական կացության թույլտվության ստացման ընթացակարգի ամբողջական ուղեկցում։",
           features: [
+            "Հիմքերի վերլուծություն",
             "Փաստաթղթերի պատրաստում",
-            "Նոտարական թարգմանություն",
             "Դիմումի ուղեկցում",
-            "Սոցիալական քարտի գրանցում",
+            "Փոխգործակցություն պետական մարմինների հետ",
+            "Ռեզիդենտի քարտի ստացում",
           ],
         },
         {
-          slug: "consultation",
-          title: "Փորձագիտական խորհրդատվություն",
-          price: "$200",
+          slug: "citizenship",
+          title: "Քաղաքացիություն",
           description:
-            "Կենտրոնացված 45-րոպեանոց հանդիպում՝ գրանցման, հարկերի, բանկերի կամ տեղափոխության հարցերով։",
+            "Հայաստանի Հանրապետության քաղաքացիություն ձեռք բերելու գործընթացի ուղեկցում։ Մեր մասնագետներն իրականացնում են նախնական վերլուծություն, օգնում են պատրաստել փաստաթղթերը և ուղեկցում հաճախորդին մինչև ընթացակարգի ավարտը։",
+          features: [],
+        },
+        {
+          slug: "ip-registration",
+          title: "ԱՁ գրանցում",
+          description:
+            "Անհատ ձեռնարկատիրոջ գրանցում Հայաստանում՝ փաստաթղթերի պատրաստում, գրանցում և բանկային հաշվի բացման աջակցություն։",
           features: [
-            "45-րոպեանոց տեսազանգ",
-            "Անհատական խորհրդատվություն",
-            "Հանդիպումից հետո ամփոփում",
-            "Առանց պարտավորության",
+            "Փաստաթղթերի պատրաստում",
+            "Բիզնեսի գրանցում",
+            "Գրանցման տվյալների ստացում",
+            "Բանկային հաշվի բացման աջակցություն",
+            "Հետագա սպասարկում",
+          ],
+        },
+        {
+          slug: "llc-registration",
+          title: "Իրավաբանական անձանց գրանցում",
+          description:
+            "Ընկերությունների ստեղծում Հայաստանում՝ փաստաթղթերի պատրաստում, գրանցում և բանկային հաշվի բացման աջակցություն։",
+          features: [
+            "Փաստաթղթերի պատրաստում",
+            "Բիզնեսի գրանցում",
+            "Գրանցման տվյալների ստացում",
+            "Բանկային հաշվի բացման աջակցություն",
+            "Հետագա սպասարկում",
+          ],
+        },
+        {
+          slug: "work-permit",
+          title: "Աշխատանքի թույլտվություն",
+          description: "Հայաստանի Հանրապետությունում աշխատանքի թույլտվության ստացման ուղեկցում։",
+          features: [],
+        },
+        {
+          slug: "migration-support",
+          title: "Համալիր միգրացիոն աջակցություն",
+          description: "Հայաստան տեղափոխվելու բոլոր փուլերի ամբողջական ուղեկցում։",
+          features: [],
+        },
+        {
+          slug: "accounting",
+          title: "Հաշվապահական ծառայություններ",
+          description: "Համալիր հաշվապահական և հարկային աջակցություն։",
+          features: [
+            "Հաշվապահական հաշվառում",
+            "Հարկային հաշվառում",
+            "Աշխատավարձի հաշվարկ",
+            "Կադրային սպասարկում",
+            "Հաշվետվությունների պատրաստում և ներկայացում",
+            "Խորհրդատվություն հարկային հարցերով",
           ],
         },
       ],
     },
-    testimonials: {
-      eyebrow: "Հաճախորդների կարծիքներ",
-      heading: "Ինչ են ասում հաճախորդները",
+    principles: {
+      eyebrow: "Մեր սկզբունքները",
+      heading: "Ինչի վրա է հիմնված մեր աշխատանքը",
       items: [
         {
-          quote:
-            "Նրանք ստանձնեցին ամեն ինչ՝ իրավաբանական գրանցում, բանկ, ընթացիկ հաշվապահություն։ Մեկ հոգսով ավելի քիչ։",
-          name: "Իլյա Կ.",
-          role: "Գործադիր տնօրեն, DSML",
+          title: "Պրոֆեսիոնալիզմ",
+          description: "Մենք հավատարիմ ենք մնում որակի բարձր չափանիշներին և ուշադրություն ենք դարձնում ամեն մանրուքի։",
         },
         {
-          quote:
-            "Ես գրանցեցի ԱՁ և բացեցի բանկային հաշիվ ամբողջովին հեռավար։ Գործընթացն ավելի արագ էր, քան ես սպասում էի։",
-          name: "Միլիտա Ն.",
-          role: "ԱՁ, խաղերի դիզայներ",
+          title: "Անհատական մոտեցում",
+          description:
+            "Յուրաքանչյուր իրավիճակ պահանջում է անհատական լուծում՝ հաշվի առնելով հաճախորդի նպատակներն ու առանձնահատկությունները։",
         },
         {
-          quote:
-            "Հուսալի և օպերատիվ առաջին օրվանից։ Այդ ժամանակից ի վեր առաջարկում ենք գործընկերներին։",
-          name: "Կոնստանտին Ի.",
-          role: "Գործադիր տնօրեն, Taptima",
+          title: "Գաղտնիություն",
+          description:
+            "Մենք ապահովում ենք տեղեկատվության պաշտպանությունը և գաղտնիության սկզբունքների պահպանումը համագործակցության բոլոր փուլերում։",
         },
+        {
+          title: "Պատասխանատվություն",
+          description:
+            "Մենք ուղեկցում ենք հաճախորդին մինչև արդյունքի հասնելը՝ ապահովելով պրոֆեսիոնալ աջակցություն յուրաքանչյուր փուլում։",
+        },
+      ],
+    },
+    howWeWork: {
+      eyebrow: "Ինչպես ենք աշխատում",
+      heading: "Մեր գործընթացը",
+      steps: [
+        { title: "Խորհրդատվություն" },
+        { title: "Փաստաթղթերի պատրաստում" },
+        { title: "Ընթացակարգերի ուղեկցում" },
+        { title: "Արդյունքի ստացում" },
+        { title: "Հաճախորդի հետագա աջակցություն" },
       ],
     },
     cta: {
-      heading: "Պատրա՞ստ եք սկսել",
-      sub: "Ուղարկեք մեզ մի քանի մանրամասն ձեր բիզնեսի մասին, և մենք կապ կհաստատենք գնանշումով, սովորաբար մեկ ժամվա ընթացքում։",
-      button: "Ստանալ գնանշում",
+      heading: "Սկսեք տեղափոխության գործընթացը հուսալի գործընկերոջ հետ",
+      sub: "Անկախ նրանից՝ դուք պլանավորում եք տեղափոխություն, բիզնեսի գրանցում, կացության թույլտվության ստացում, թե հաշվապահական սպասարկում, ReloPartner Armenia-ի թիմը պատրաստ է առաջարկել պրոֆեսիոնալ լուծումներ և ապահովել համալիր աջակցություն յուրաքանչյուր փուլում։ Կապվեք մեզ հետ՝ անհատական խորհրդատվություն ստանալու և համագործակցության օպտիմալ ձևաչափը քննարկելու համար։",
+      button: "Ստանալ խորհրդատվություն",
     },
     servicesPage: {
       eyebrow: "Ծառայություններ",
-      heading: "Այն ամենը, ինչ անհրաժեշտ է Հայաստանում բիզնես սկսելու և վարելու համար",
-      sub: "Ընտրեք ծառայություն՝ անհատական գնանշում ստանալու համար։ Իրական մասնագետը կապ կհաստատի, սովորաբար մեկ ժամվա ընթացքում։",
-      notSureHeading: "Վստահ չե՞ք, թե որ ծառայությունն է հարմար",
-      notSureSub: "Ամրագրեք կարճ խորհրդատվություն, և մենք կուղղորդենք ձեզ ճիշտ ուղղությամբ։",
+      heading: "Մեր ծառայությունները",
+      sub: "Ծանոթացեք տեղափոխության, բիզնեսի և հաշվապահության ոլորտում մեր ծառայությունների ամբողջական շրջանակին։",
+      notSureHeading: "Վստահ չե՞ք, թե որ ծառայությունն է ձեզ անհրաժեշտ",
+      notSureSub: "Կապվեք մեզ հետ, և մենք կօգնենք գտնել հարմար լուծումը։",
     },
     contactPage: {
       eyebrow: "Կապ",
-      heading: "Պատմեք, թե ինչ է ձեզ անհրաժեշտ",
-      sub: "Լրացրեք ձևը, և մենք կապ կհաստատենք ձեզ հետ անհատական գնանշումով, սովորաբար մեկ ժամվա ընթացքում։",
+      heading: "Ստանալ խորհրդատվություն",
+      sub: "Լրացրեք ստորև ձևը, և մեր թիմը կապ կհաստատի ձեզ հետ մանրամասները քննարկելու համար։",
       faqHeading: "Հաճախ տրվող հարցեր",
-      directHeading: "Նախընտրու՞մ եք ուղղակի կապ",
+      directHeading: "Կապի տվյալներ",
       faqs: [
         {
-          question: "Ինչպե՞ս ստանալ գնանշում",
+          question: "Ի՞նչ ծառայություններ է մատուցում ընկերությունը։",
           answer:
-            "Լրացրեք ձևը՝ նշելով ձեր իրավիճակի մի քանի մանրամասն։ Սովորաբար պատասխանում ենք մեկ ժամվա ընթացքում՝ գնանշումով և հաջորդ քայլերով։",
+            "Մենք տրամադրում ենք համալիր աջակցություն տեղափոխության, կացության թույլտվության, քաղաքացիության ստացման, բիզնեսի գրանցման, հաշվապահական սպասարկման, աշխատանքի թույլտվության ձևակերպման և հարակից այլ հարցերում։",
         },
         {
-          question: "Անհրաժե՞շտ է լինել Հայաստանում ընկերություն գրանցելու համար",
+          question: "Հնարավո՞ր է սպասարկում ստանալ հեռավար։",
           answer:
-            "Ոչ։ Գրանցումը կարող է իրականացվել հեռավար՝ նոտարական լիազորագրով և թարգմանված անձնագրով։",
+            "Այո։ Ծառայության բնույթից կախված՝ առանձին ընթացակարգեր կարող են կազմակերպվել հեռավար՝ օրենսդրության պահանջներին համապատասխան։",
         },
         {
-          question: "Որքա՞ն ժամանակ է տևում գրանցումը",
+          question: "Որքա՞ն ժամանակ է տևում ձևակերպումը։",
           answer:
-            "ԱՁ և ՍՊԸ գրանցումների մեծ մասն ավարտվում է մի քանի աշխատանքային օրվա ընթացքում՝ փաստաթղթերի պատրաստ լինելուց հետո։",
+            "Ժամկետը կախված է ընտրված ծառայությունից, դիմելու հիմքից և պետական մարմինների պահանջներից։ Խորհրդատվությունից հետո մենք տրամադրում ենք անհատական աշխատանքային պլան՝ յուրաքանչյուր փուլի մոտավոր ժամկետներով։",
         },
         {
-          question: "Ո՞ր հարկային համակարգն է ինձ համար հարմար",
+          question: "Աշխատու՞մ եք բիզնեսի հետ։",
           answer:
-            "Կախված է շրջանառությունից և գործունեության տեսակից։ Խորհրդատվության ընթացքում կներկայացնենք տարբերակները (միկրոձեռնարկատիրություն, շրջանառության հարկ կամ ընդհանուր հարկման համակարգ)։",
+            "Այո։ Մենք սպասարկում ենք անհատ ձեռնարկատերերի, կազմակերպությունների և միջազգային ընկերությունների՝ տրամադրելով համալիր լուծումներ Հայաստանի Հանրապետությունում գործունեություն ծավալելու համար։",
         },
         {
-          question: "Կարո՞ղ եմ բանկային հաշիվ բացել հեռավար",
+          question: "Խորհրդատվություն տրամադրու՞մ եք։",
           answer:
-            "Ներկայումս Հայաստանում հաշիվ բացելու համար պահանջվում է անձնական ներկայություն, սակայն մենք կուղեկցենք ձեզ ողջ գործընթացում ժամանելուց հետո։",
+            "Այո։ Մեր մասնագետներն իրականացնում են անհատական խորհրդատվություններ, որոնք թույլ են տալիս որոշել հետագա գործողությունների օպտիմալ կարգը։",
         },
       ],
+      contacts: {
+        addressLabel: "Գրասենյակի հասցե",
+        phoneLabel: "Հեռախոս",
+        emailLabel: "Էլ. փոստ",
+        whatsappLabel: "WhatsApp",
+        telegramLabel: "Telegram",
+        addressValue: "Երևան, Հայաստան",
+        phoneValue: "+374 00 000 000",
+        emailValue: "hello@relopartner.am",
+        whatsappValue: "+374 00 000 000",
+        whatsappHref: "https://wa.me/37400000000",
+        telegramValue: "@relopartner",
+        telegramHref: "https://t.me/relopartner",
+      },
       form: {
         nameLabel: "Անուն",
         namePlaceholder: "Ձեր լրիվ անունը",
@@ -774,7 +871,7 @@ export const translations: Record<Locale, Dictionary> = {
         otherOption: "Այլ / Վստահ չեմ",
         messageLabel: "Հաղորդագրություն",
         messagePlaceholder: "Պատմեք մի փոքր, թե ինչ է ձեզ անհրաժեշտ...",
-        submit: "Ստանալ գնանշում",
+        submit: "Ստանալ խորհրդատվություն",
         nameRequired: "Նշեք անունը։",
         emailRequired: "Նշեք էլ. փոստը։",
         emailInvalid: "Մուտքագրեք վավեր էլ. փոստ։",
@@ -786,8 +883,8 @@ export const translations: Record<Locale, Dictionary> = {
       },
     },
     footer: {
-      tagline: "Բիզնեսի գրանցում, հաշվապահություն և կացության թույլտվության աջակցություն Հայաստանում։",
-      requestQuote: "Ստանալ գնանշում",
+      tagline: "Տեղափոխության, բիզնեսի և հաշվապահության համալիր աջակցություն Հայաստանում։",
+      getConsultation: "Ստանալ խորհրդատվություն",
       rights: "Բոլոր իրավունքները պաշտպանված են։",
     },
   },

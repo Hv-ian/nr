@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import ServiceCard from "@/components/ServiceCard";
-import BenefitTile from "@/components/BenefitTile";
-import Testimonial from "@/components/Testimonial";
+import PrincipleTile from "@/components/PrincipleTile";
+import StepTile from "@/components/StepTile";
 import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Home() {
@@ -23,108 +22,133 @@ export default function Home() {
           className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
         />
 
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-24 lg:grid-cols-2 lg:items-center lg:py-28">
-          <div>
-            <span className="eyebrow">{t.hero.eyebrow}</span>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-              {t.hero.headline} <span className="text-accent">{t.hero.headlineAccent}</span>
-            </h1>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted">
-              {t.hero.sub}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
-                className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
-              >
-                {t.hero.ctaPrimary}
-              </Link>
-              <Link
-                href="/services"
-                className="rounded-lg border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface"
-              >
-                {t.hero.ctaSecondary}
-              </Link>
-            </div>
-
-            <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-6 border-t border-border pt-8">
-              {t.hero.stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-2xl font-semibold text-accent-dark">
-                    {stat.value}
-                  </dt>
-                  <dd className="mt-1 text-xs text-muted">{stat.label}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-            <Image
-              src="https://images.unsplash.com/photo-1615808462014-eb2fd6407106?auto=format&fit=crop&w=1400&q=80"
-              alt="View of Mount Ararat from Yerevan, Armenia"
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 560px, 100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+        <div className="relative mx-auto max-w-3xl px-6 py-16 text-center sm:py-24">
+          <span className="eyebrow justify-center">{t.hero.eyebrow}</span>
+          <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+            {t.hero.headlinePre}
+            <span className="text-accent">{t.hero.headlineAccent}</span>
+            {t.hero.headlineSuffix}
+          </h1>
+          <p className="mt-6 text-base leading-relaxed text-muted">
+            {t.hero.sub}
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-muted">
+            {t.hero.subSecondary}
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/contact"
+              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
+            >
+              {t.hero.ctaPrimary}
+            </Link>
+            <Link
+              href="/services"
+              className="rounded-lg border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface"
+            >
+              {t.hero.ctaSecondary}
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* About */}
       <section className="border-t border-border bg-surface">
-        <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20">
-          <span className="eyebrow">{t.benefits.eyebrow}</span>
+        <div className="mx-auto max-w-3xl px-6 py-16 text-center sm:py-20">
+          <span className="eyebrow justify-center">{t.about.eyebrow}</span>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            {t.benefits.heading}
+            {t.about.heading}
           </h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {t.benefits.items.map((benefit) => (
-              <BenefitTile key={benefit.title} benefit={benefit} />
+          <div className="mt-6 flex flex-col gap-4">
+            {t.about.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-base leading-relaxed text-muted">
+                {paragraph}
+              </p>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services preview */}
+      {/* Services overview */}
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="eyebrow">{t.services.eyebrow}</span>
+            <span className="eyebrow">{t.servicesOverview.eyebrow}</span>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-              {t.services.heading}
+              {t.servicesOverview.heading}
             </h2>
           </div>
           <Link
             href="/services"
             className="text-sm font-semibold text-accent hover:text-accent-dark"
           >
-            {t.services.viewAll} &rarr;
+            {t.servicesOverview.viewAll} &rarr;
           </Link>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {t.services.items.slice(0, 3).map((service) => (
-            <ServiceCard
-              key={service.slug}
-              service={service}
-              ctaLabel={t.services.requestQuote}
-            />
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {t.servicesOverview.items.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/contact?service=${item.slug}`}
+              className="group flex items-center justify-between gap-3 rounded-xl border border-border bg-background px-5 py-4 text-sm font-medium transition-colors hover:border-accent/40 hover:bg-surface"
+            >
+              {item.title}
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                className="h-4 w-4 flex-none text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent"
+              >
+                <path
+                  d="M7.5 4.5 13 10l-5.5 5.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Featured services */}
       <section className="border-t border-border bg-surface">
-        <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20">
-          <span className="eyebrow">{t.testimonials.eyebrow}</span>
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {t.services.items.slice(0, 3).map((service) => (
+              <ServiceCard
+                key={service.slug}
+                service={service}
+                ctaLabel={t.services.getConsultation}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Principles */}
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <span className="eyebrow">{t.principles.eyebrow}</span>
+        <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          {t.principles.heading}
+        </h2>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {t.principles.items.map((principle) => (
+            <PrincipleTile key={principle.title} principle={principle} />
+          ))}
+        </div>
+      </section>
+
+      {/* How we work */}
+      <section className="border-t border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <span className="eyebrow">{t.howWeWork.eyebrow}</span>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            {t.testimonials.heading}
+            {t.howWeWork.heading}
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {t.testimonials.items.map((testimonial) => (
-              <Testimonial key={testimonial.name} testimonial={testimonial} />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {t.howWeWork.steps.map((step, index) => (
+              <StepTile key={step.title} index={index + 1} title={step.title} />
             ))}
           </div>
         </div>
@@ -132,16 +156,16 @@ export default function Home() {
 
       {/* CTA banner */}
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-        <div className="relative grid gap-8 overflow-hidden rounded-3xl bg-foreground px-8 py-12 text-background sm:px-12 lg:grid-cols-2 lg:items-center">
+        <div className="relative overflow-hidden rounded-3xl bg-foreground px-8 py-12 text-center text-background sm:px-12">
           <div
             aria-hidden
             className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
           />
-          <div className="relative">
+          <div className="relative mx-auto max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               {t.cta.heading}
             </h2>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-background/70">
+            <p className="mt-4 text-sm leading-relaxed text-background/70">
               {t.cta.sub}
             </p>
             <Link
@@ -150,15 +174,6 @@ export default function Home() {
             >
               {t.cta.button}
             </Link>
-          </div>
-          <div className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl lg:block">
-            <Image
-              src="https://images.unsplash.com/photo-1605362814200-8efc2d015560?auto=format&fit=crop&w=900&q=80"
-              alt="Working remotely on a laptop"
-              fill
-              className="object-cover"
-              sizes="440px"
-            />
           </div>
         </div>
       </section>

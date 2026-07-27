@@ -20,7 +20,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         <Link href="/" className="text-lg font-semibold tracking-tight">
-          Yerevan<span className="text-accent">.</span>Setup
+          ReloPartner<span className="text-accent"> Armenia</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -42,7 +42,7 @@ export default function Header() {
             href="/contact"
             className="rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-accent"
           >
-            {t.nav.getQuote}
+            {t.nav.getConsultation}
           </Link>
         </div>
 
@@ -78,7 +78,7 @@ export default function Header() {
             onClick={() => setOpen(false)}
             className="mt-2 rounded-lg bg-foreground px-5 py-2.5 text-center text-sm font-semibold text-background"
           >
-            {t.nav.getQuote}
+            {t.nav.getConsultation}
           </Link>
 
           <div className="mt-4 flex items-center gap-2 border-t border-border pt-4">

@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yerevan Setup | Business Registration & Relocation",
+  title: "ReloPartner Armenia | Relocation, Business & Accounting Support",
   description:
-    "Fast, remote business registration, accounting, and residency support in Armenia. Request a quote in minutes.",
+    "Comprehensive migration, corporate, and accounting support for individuals and businesses relocating to the Republic of Armenia.",
 };
 
 export default function RootLayout({

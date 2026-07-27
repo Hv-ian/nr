@@ -3,9 +3,9 @@ import { Suspense } from "react";
 import ContactContent from "@/components/ContactContent";
 
 export const metadata: Metadata = {
-  title: "Get a Quote | Yerevan Setup",
+  title: "Get a Consultation | ReloPartner Armenia",
   description:
-    "Request a tailored quote for company registration, accounting, or residency support in Armenia.",
+    "Request a consultation for relocation, residence permits, business registration, or accounting support in Armenia.",
 };
 
 export default function ContactPage() {

@@ -23,7 +23,7 @@ export default function ServicesContent() {
             <ServiceCard
               key={service.slug}
               service={service}
-              ctaLabel={t.services.requestQuote}
+              ctaLabel={t.services.getConsultation}
             />
           ))}
         </div>
@@ -38,10 +38,10 @@ export default function ServicesContent() {
             {t.servicesPage.notSureSub}
           </p>
           <Link
-            href="/contact?service=consultation"
+            href="/contact"
             className="mt-6 inline-flex rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
           >
-            {t.services.requestQuote}
+            {t.services.getConsultation}
           </Link>
         </div>
       </section>
