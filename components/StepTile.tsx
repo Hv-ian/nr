@@ -10,7 +10,7 @@ export default function StepTile({
       <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent-dark">
         {index}
       </span>
-      <p className="min-w-0 flex-1 font-semibold">{title}</p>
+      <p className="min-w-0 flex-1 break-words font-semibold">{title}</p>
     </div>
   );
 }
