@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import ServiceCard from "@/components/ServiceCard";
 import PrincipleTile from "@/components/PrincipleTile";
@@ -22,49 +23,74 @@ export default function Home() {
           className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
         />
 
-        <div className="relative mx-auto max-w-3xl px-6 py-16 text-center sm:py-24">
-          <span className="eyebrow justify-center">{t.hero.eyebrow}</span>
-          <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
-            {t.hero.headlinePre}
-            <span className="text-accent">{t.hero.headlineAccent}</span>
-            {t.hero.headlineSuffix}
-          </h1>
-          <p className="mt-6 text-base leading-relaxed text-muted">
-            {t.hero.sub}
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            {t.hero.subSecondary}
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/contact"
-              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
-            >
-              {t.hero.ctaPrimary}
-            </Link>
-            <Link
-              href="/services"
-              className="rounded-lg border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface"
-            >
-              {t.hero.ctaSecondary}
-            </Link>
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-24 lg:grid-cols-2 lg:items-center lg:py-28">
+          <div>
+            <span className="eyebrow">{t.hero.eyebrow}</span>
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+              {t.hero.headlinePre}
+              <span className="text-accent">{t.hero.headlineAccent}</span>
+              {t.hero.headlineSuffix}
+            </h1>
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted">
+              {t.hero.sub}
+            </p>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">
+              {t.hero.subSecondary}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
+              >
+                {t.hero.ctaPrimary}
+              </Link>
+              <Link
+                href="/services"
+                className="rounded-lg border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface"
+              >
+                {t.hero.ctaSecondary}
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+            <Image
+              src="https://images.unsplash.com/photo-1615808462014-eb2fd6407106?auto=format&fit=crop&w=1400&q=80"
+              alt="View of Mount Ararat from Yerevan, Armenia"
+              fill
+              priority
+              className="object-cover"
+              sizes="(min-width: 1024px) 560px, 100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
           </div>
         </div>
       </section>
 
       {/* About */}
       <section className="border-t border-border bg-surface">
-        <div className="mx-auto max-w-3xl px-6 py-16 text-center sm:py-20">
-          <span className="eyebrow justify-center">{t.about.eyebrow}</span>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            {t.about.heading}
-          </h2>
-          <div className="mt-6 flex flex-col gap-4">
-            {t.about.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-base leading-relaxed text-muted">
-                {paragraph}
-              </p>
-            ))}
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-2 lg:items-center">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:order-2">
+            <Image
+              src="https://images.unsplash.com/photo-1697700257503-1b6e2034eb37?auto=format&fit=crop&w=1200&q=80"
+              alt="Republic Square in Yerevan, Armenia"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 560px, 100vw"
+            />
+          </div>
+          <div className="lg:order-1">
+            <span className="eyebrow">{t.about.eyebrow}</span>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              {t.about.heading}
+            </h2>
+            <div className="mt-6 flex flex-col gap-4">
+              {t.about.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="text-base leading-relaxed text-muted">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -156,16 +182,24 @@ export default function Home() {
 
       {/* CTA banner */}
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-        <div className="relative overflow-hidden rounded-3xl bg-foreground px-8 py-12 text-center text-background sm:px-12">
+        <div className="relative overflow-hidden rounded-3xl text-center text-background">
+          <Image
+            src="https://images.unsplash.com/photo-1597742826856-5efeb4a599cc?auto=format&fit=crop&w=1600&q=80"
+            alt="Republic Square in Yerevan at night"
+            fill
+            className="object-cover"
+            sizes="1152px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/85 to-foreground/50" />
           <div
             aria-hidden
-            className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
+            className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
           />
-          <div className="relative mx-auto max-w-2xl">
+          <div className="relative mx-auto max-w-2xl px-8 py-16 sm:px-12 sm:py-20">
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               {t.cta.heading}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-background/70">
+            <p className="mt-4 text-sm leading-relaxed text-background/80">
               {t.cta.sub}
             </p>
             <Link
