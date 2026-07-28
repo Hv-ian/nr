@@ -72,7 +72,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:order-2">
             <Image
-              src="https://images.unsplash.com/photo-1697700257503-1b6e2034eb37?auto=format&fit=crop&w=1200&q=80"
+              src="/images/repSquare.avif"
               alt="Republic Square in Yerevan, Armenia"
               fill
               className="object-cover object-top"
