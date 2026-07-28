@@ -55,7 +55,7 @@ export default function Home() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
             <Image
-              src="https://images.unsplash.com/photo-1615808462014-eb2fd6407106?auto=format&fit=crop&w=1400&q=80"
+              src="/images/ararat.avif"
               alt="View of Mount Ararat from Yerevan, Armenia"
               fill
               priority
@@ -75,7 +75,7 @@ export default function Home() {
               src="https://images.unsplash.com/photo-1697700257503-1b6e2034eb37?auto=format&fit=crop&w=1200&q=80"
               alt="Republic Square in Yerevan, Armenia"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="(min-width: 1024px) 560px, 100vw"
             />
           </div>

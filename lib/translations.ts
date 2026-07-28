@@ -185,7 +185,6 @@ export const translations: Record<Locale, Dictionary> = {
         { slug: "ip-registration", title: "Individual Entrepreneur Registration" },
         { slug: "llc-registration", title: "Legal Entity Registration" },
         { slug: "work-permit", title: "Work Permit" },
-        { slug: "migration-support", title: "Comprehensive Migration Support" },
         { slug: "accounting", title: "Accounting & Tax Support" },
       ],
     },
@@ -246,13 +245,6 @@ export const translations: Record<Locale, Dictionary> = {
           title: "Work Permit",
           description:
             "Support in obtaining a work permit for employment in the Republic of Armenia.",
-          features: [],
-        },
-        {
-          slug: "migration-support",
-          title: "Comprehensive Migration Support",
-          description:
-            "End-to-end migration support covering every stage of relocating to Armenia.",
           features: [],
         },
         {
@@ -434,7 +426,6 @@ export const translations: Record<Locale, Dictionary> = {
         { slug: "ip-registration", title: "Регистрация ИП" },
         { slug: "llc-registration", title: "Регистрация юридических лиц" },
         { slug: "work-permit", title: "Разрешение на работу (Work Permit)" },
-        { slug: "migration-support", title: "Комплексное миграционное сопровождение" },
         { slug: "accounting", title: "Бухгалтерское и налоговое сопровождение" },
       ],
     },
@@ -494,12 +485,6 @@ export const translations: Record<Locale, Dictionary> = {
           slug: "work-permit",
           title: "Разрешение на работу",
           description: "Сопровождение получения разрешения на работу в Республике Армения.",
-          features: [],
-        },
-        {
-          slug: "migration-support",
-          title: "Комплексное миграционное сопровождение",
-          description: "Полное сопровождение на всех этапах переезда в Армению.",
           features: [],
         },
         {
@@ -680,7 +665,6 @@ export const translations: Record<Locale, Dictionary> = {
         { slug: "ip-registration", title: "ԱՁ գրանցում" },
         { slug: "llc-registration", title: "Իրավաբանական անձանց գրանցում" },
         { slug: "work-permit", title: "Աշխատանքի թույլտվություն (Work Permit)" },
-        { slug: "migration-support", title: "Համալիր միգրացիոն աջակցություն" },
         { slug: "accounting", title: "Հաշվապահական և հարկային աջակցություն" },
       ],
     },
@@ -740,12 +724,6 @@ export const translations: Record<Locale, Dictionary> = {
           slug: "work-permit",
           title: "Աշխատանքի թույլտվություն",
           description: "Հայաստանի Հանրապետությունում աշխատանքի թույլտվության ստացման ուղեկցում։",
-          features: [],
-        },
-        {
-          slug: "migration-support",
-          title: "Համալիր միգրացիոն աջակցություն",
-          description: "Հայաստան տեղափոխվելու բոլոր փուլերի ամբողջական ուղեկցում։",
           features: [],
         },
         {
