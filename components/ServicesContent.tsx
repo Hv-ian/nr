@@ -21,7 +21,7 @@ export default function ServicesContent() {
 
         <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-3xl">
           <Image
-            src="https://images.unsplash.com/photo-1605517692788-0d76a4b7e834?auto=format&fit=crop&w=1600&q=80"
+            src="/images/cascade.avif"
             alt="The Cascade complex in Yerevan, Armenia"
             fill
             priority
