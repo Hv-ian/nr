@@ -136,6 +136,8 @@ export type Dictionary = {
       successTitle: string;
       successMessage: (name: string) => string;
       sendAnother: string;
+      submitting: string;
+      submitError: string;
     };
   };
   footer: {
@@ -157,7 +159,7 @@ export const translations: Record<Locale, Dictionary> = {
     },
     hero: {
       eyebrow: "Relocation to Armenia",
-      headlinePre: "Comprehensive relocation support for the ",
+      headlinePre: "Comprehensive relocation support to the ",
       headlineAccent: "Republic of Armenia",
       headlineSuffix: "",
       sub: "We support individuals, entrepreneurs, and companies at every stage of relocation, providing professional migration, corporate, and accounting support.",
@@ -377,8 +379,10 @@ export const translations: Record<Locale, Dictionary> = {
         serviceRequired: "Select a service.",
         successTitle: "Request received",
         successMessage: (name) =>
-          `Thanks, ${name}. This is a preview form, so no message was actually sent yet.`,
+          `Thanks, ${name}. We've received your request and will get back to you shortly.`,
         sendAnother: "Send another request",
+        submitting: "Sending...",
+        submitError: "Something went wrong. Please try again or email us directly.",
       },
     },
     footer: {
@@ -616,8 +620,10 @@ export const translations: Record<Locale, Dictionary> = {
         serviceRequired: "Выберите услугу.",
         successTitle: "Заявка получена",
         successMessage: (name) =>
-          `Спасибо, ${name}. Это демо-форма, сообщение пока никуда не отправлено.`,
+          `Спасибо, ${name}. Мы получили вашу заявку и скоро свяжемся с вами.`,
         sendAnother: "Отправить ещё одну заявку",
+        submitting: "Отправка...",
+        submitError: "Что-то пошло не так. Попробуйте ещё раз или напишите нам напрямую.",
       },
     },
     footer: {
@@ -856,8 +862,10 @@ export const translations: Record<Locale, Dictionary> = {
         serviceRequired: "Ընտրեք ծառայություն։",
         successTitle: "Հայտն ընդունված է",
         successMessage: (name) =>
-          `Շնորհակալություն, ${name}։ Սա նախադիտման ձև է, հաղորդագրությունը դեռ ուղարկված չէ։`,
+          `Շնորհակալություն, ${name}։ Մենք ստացել ենք ձեր հայտը և շուտով կապ կհաստատենք ձեզ հետ։`,
         sendAnother: "Ուղարկել նոր հայտ",
+        submitting: "Ուղարկվում է...",
+        submitError: "Ինչ-որ բան այնպես չգնաց։ Խնդրում ենք փորձել կրկին կամ գրել մեզ ուղղակիորեն։",
       },
     },
     footer: {

@@ -3,6 +3,8 @@
 import { useState, type FormEvent } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 
+const WEB3FORMS_ACCESS_KEY = "1bf76840-fa7f-4bb6-8d11-f5cd519dfb5f";
+
 type FormState = {
   name: string;
   email: string;
@@ -35,6 +37,8 @@ export default function QuoteForm({
     {}
   );
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   function updateField<K extends keyof FormState>(field: K, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -53,11 +57,48 @@ export default function QuoteForm({
     return Object.keys(nextErrors).length === 0;
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!validate()) return;
-    // No backend wired up yet. Submissions are not sent anywhere.
-    setSubmitted(true);
+
+    const formEl = event.currentTarget;
+    if ((new FormData(formEl).get("botcheck") as string)?.length > 0) {
+      return;
+    }
+
+    const serviceTitle =
+      t.services.items.find((service) => service.slug === form.service)
+        ?.title ?? form.service;
+
+    setIsSubmitting(true);
+    setSubmitError(false);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New consultation request: ${serviceTitle}`,
+          from_name: form.name,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: serviceTitle,
+          message: form.message,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -98,6 +139,15 @@ export default function QuoteForm({
       noValidate
       className="rounded-2xl border border-border bg-background p-6 sm:p-8"
     >
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <label htmlFor="name" className="text-sm font-medium">
@@ -187,11 +237,16 @@ export default function QuoteForm({
         </div>
       </div>
 
+      {submitError && (
+        <p className="mt-4 text-sm text-red-600">{form_t.submitError}</p>
+      )}
+
       <button
         type="submit"
-        className="mt-6 w-full rounded-lg bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent sm:w-auto"
+        disabled={isSubmitting}
+        className="mt-6 w-full rounded-lg bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
-        {form_t.submit}
+        {isSubmitting ? form_t.submitting : form_t.submit}
       </button>
     </form>
   );
