@@ -356,8 +356,8 @@ export const translations: Record<Locale, Dictionary> = {
         emailValue: "info@relopartner.org",
         whatsappValue: "+374 41 554 510",
         whatsappHref: "https://wa.me/37441554510",
-        telegramValue: "@relopartner",
-        telegramHref: "https://t.me/relopartner",
+        telegramValue: "+374 41 554 510",
+        telegramHref: "https://t.me/+37441554510",
       },
       form: {
         nameLabel: "Name",
@@ -597,8 +597,8 @@ export const translations: Record<Locale, Dictionary> = {
         emailValue: "info@relopartner.org",
         whatsappValue: "+374 41 554 510",
         whatsappHref: "https://wa.me/37441554510",
-        telegramValue: "@relopartner",
-        telegramHref: "https://t.me/relopartner",
+        telegramValue: "+374 41 554 510",
+        telegramHref: "https://t.me/+37441554510",
       },
       form: {
         nameLabel: "Имя",
@@ -839,8 +839,8 @@ export const translations: Record<Locale, Dictionary> = {
         emailValue: "info@relopartner.org",
         whatsappValue: "+374 41 554 510",
         whatsappHref: "https://wa.me/37441554510",
-        telegramValue: "@relopartner",
-        telegramHref: "https://t.me/relopartner",
+        telegramValue: "+374 41 554 510",
+        telegramHref: "https://t.me/+37441554510",
       },
       form: {
         nameLabel: "Անուն",
