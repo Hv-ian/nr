@@ -5,10 +5,12 @@ import Link from "next/link";
 import ServiceCard from "@/components/ServiceCard";
 import PrincipleTile from "@/components/PrincipleTile";
 import StepTile from "@/components/StepTile";
+import FaqAccordion from "@/components/FaqAccordion";
 import { useLanguage } from "@/components/LanguageProvider";
+import { localePath } from "@/lib/routing";
 
-export default function Home() {
-  const { t } = useLanguage();
+export default function HomeContent() {
+  const { locale, t } = useLanguage();
 
   return (
     <>
@@ -39,13 +41,13 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/contact"
+                href={localePath(locale, "contact")}
                 className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
               >
                 {t.hero.ctaPrimary}
               </Link>
               <Link
-                href="/services"
+                href={localePath(locale, "services")}
                 className="rounded-lg border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface"
               >
                 {t.hero.ctaSecondary}
@@ -105,7 +107,7 @@ export default function Home() {
             </h2>
           </div>
           <Link
-            href="/services"
+            href={localePath(locale, "services")}
             className="text-sm font-semibold text-accent hover:text-accent-dark"
           >
             {t.servicesOverview.viewAll} &rarr;
@@ -115,7 +117,7 @@ export default function Home() {
           {t.servicesOverview.items.map((item) => (
             <Link
               key={item.slug}
-              href={`/contact?service=${item.slug}`}
+              href={`${localePath(locale, "contact")}?service=${item.slug}`}
               className="group flex items-center justify-between gap-3 rounded-xl border border-border bg-background px-5 py-4 text-sm font-medium transition-colors hover:border-accent/40 hover:bg-surface"
             >
               {item.title}
@@ -146,6 +148,7 @@ export default function Home() {
                 key={service.slug}
                 service={service}
                 ctaLabel={t.services.getConsultation}
+                href={`${localePath(locale, "contact")}?service=${service.slug}`}
               />
             ))}
           </div>
@@ -180,6 +183,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why choose us */}
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <span className="eyebrow">{t.whyChoose.eyebrow}</span>
+        <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          {t.whyChoose.heading}
+        </h2>
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {t.whyChoose.items.map((item) => (
+            <li
+              key={item}
+              className="flex items-start gap-3 rounded-2xl border border-border bg-background p-5"
+            >
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                className="mt-0.5 h-5 w-5 flex-none text-accent"
+              >
+                <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
+                <path
+                  d="M6 10.5 8.5 13 14 7.5"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-sm font-medium leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-border bg-surface">
+        <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+          <span className="eyebrow">{t.homeFaq.eyebrow}</span>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            {t.homeFaq.heading}
+          </h2>
+          <div className="mt-8">
+            <FaqAccordion faqs={t.homeFaq.items} />
+          </div>
+        </div>
+      </section>
+
       {/* CTA banner */}
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <div className="relative overflow-hidden rounded-3xl text-center text-background">
@@ -203,7 +251,7 @@ export default function Home() {
               {t.cta.sub}
             </p>
             <Link
-              href="/contact"
+              href={localePath(locale, "contact")}
               className="mt-6 inline-flex rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent-dark"
             >
               {t.cta.button}

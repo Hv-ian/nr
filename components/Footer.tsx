@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageProvider";
+import { localePath } from "@/lib/routing";
 
 function IconButton({
   href,
@@ -27,7 +28,7 @@ function IconButton({
 }
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const { contacts } = t.contactPage;
 
   return (
@@ -39,7 +40,7 @@ export default function Footer() {
           </p>
           <p className="mt-2 max-w-xs text-sm">{t.footer.tagline}</p>
           <Link
-            href="/contact"
+            href={localePath(locale, "contact")}
             className="mt-4 inline-flex text-sm font-medium text-accent hover:text-background"
           >
             {t.footer.getConsultation} &rarr;

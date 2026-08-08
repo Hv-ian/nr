@@ -1,11 +1,15 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { locales, localeLabels, localeNames } from "@/lib/translations";
+import { switchLocalePath } from "@/lib/routing";
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale } = useLanguage();
+  const { locale } = useLanguage();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -59,14 +63,12 @@ export default function LanguageSwitcher() {
         >
           {locales.map((code) => (
             <li key={code}>
-              <button
-                type="button"
+              <Link
+                href={switchLocalePath(pathname, code)}
+                hrefLang={code}
                 role="option"
                 aria-selected={locale === code}
-                onClick={() => {
-                  setLocale(code);
-                  setOpen(false);
-                }}
+                onClick={() => setOpen(false)}
                 className={`flex w-full items-center justify-between px-3 py-2 text-sm transition-colors hover:bg-surface ${
                   locale === code ? "font-semibold text-accent-dark" : "text-foreground/80"
                 }`}
@@ -83,7 +85,7 @@ export default function LanguageSwitcher() {
                     />
                   </svg>
                 )}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>

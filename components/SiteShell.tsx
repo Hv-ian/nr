@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/components/LanguageProvider";
-import "./globals.css";
+import type { Locale } from "@/lib/translations";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,24 +15,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "ReloPartner Armenia | Relocation, Business & Accounting Support",
-  description:
-    "Comprehensive migration, corporate, and accounting support for individuals and businesses relocating to the Republic of Armenia.",
-};
-
-export default function RootLayout({
+/**
+ * The document shell shared by every locale's root layout. Each locale has
+ * its own root layout so `<html lang>` is correct in the prerendered HTML.
+ */
+export default function SiteShell({
+  locale,
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  locale: Locale;
+  children: ReactNode;
+}) {
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <LanguageProvider>
+        <LanguageProvider locale={locale}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

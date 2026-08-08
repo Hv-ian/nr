@@ -82,6 +82,16 @@ export type Dictionary = {
     heading: string;
     steps: StepItem[];
   };
+  whyChoose: {
+    eyebrow: string;
+    heading: string;
+    items: string[];
+  };
+  homeFaq: {
+    eyebrow: string;
+    heading: string;
+    items: FaqItem[];
+  };
   cta: {
     heading: string;
     sub: string;
@@ -90,9 +100,12 @@ export type Dictionary = {
   servicesPage: {
     eyebrow: string;
     heading: string;
+    intro: string;
     sub: string;
     notSureHeading: string;
     notSureSub: string;
+    faqHeading: string;
+    faqs: FaqItem[];
   };
   contactPage: {
     eyebrow: string;
@@ -145,6 +158,11 @@ export type Dictionary = {
     getConsultation: string;
     rights: string;
   };
+  meta: {
+    home: { title: string; description: string };
+    services: { title: string; description: string };
+    contact: { title: string; description: string };
+  };
 };
 
 export const translations: Record<Locale, Dictionary> = {
@@ -159,9 +177,9 @@ export const translations: Record<Locale, Dictionary> = {
     },
     hero: {
       eyebrow: "Relocation to Armenia",
-      headlinePre: "Comprehensive relocation support to the ",
-      headlineAccent: "Republic of Armenia",
-      headlineSuffix: "",
+      headlinePre: "Your Trusted ",
+      headlineAccent: "Relocation Partner",
+      headlineSuffix: " in Armenia",
       sub: "We support individuals, entrepreneurs, and companies at every stage of relocation, providing professional migration, corporate, and accounting support.",
       subSecondary:
         "From obtaining a residence permit and registering a business to accounting support and liaising with government authorities, we offer comprehensive solutions that let our clients focus on their personal goals and business growth.",
@@ -300,6 +318,43 @@ export const translations: Record<Locale, Dictionary> = {
         { title: "Ongoing Support" },
       ],
     },
+    whyChoose: {
+      eyebrow: "Why Us",
+      heading: "Why Choose ReloPartner?",
+      items: [
+        "Local Armenia expertise",
+        "Multilingual relocation support",
+        "Complete relocation assistance",
+        "Business and legal coordination",
+        "Support before and after arrival",
+      ],
+    },
+    homeFaq: {
+      eyebrow: "FAQ",
+      heading: "Frequently asked questions",
+      items: [
+        {
+          question: "How can I relocate to Armenia?",
+          answer:
+            "Foreign citizens can relocate to Armenia by choosing the appropriate residency option, preparing required documents, and completing local registration procedures. ReloPartner helps manage the relocation process from start to finish.",
+        },
+        {
+          question: "Can foreigners open a company in Armenia?",
+          answer:
+            "Yes, foreigners can establish businesses in Armenia. Professional support can help with company registration, tax setup, banking, and compliance requirements.",
+        },
+        {
+          question: "Is Armenia a good country for relocation?",
+          answer:
+            "Armenia offers a growing business environment, affordable living costs, and opportunities for entrepreneurs, remote workers, and families looking for a new place to live.",
+        },
+        {
+          question: "What relocation services does ReloPartner offer in Armenia?",
+          answer:
+            "ReloPartner provides comprehensive relocation services in Armenia, including residence permit assistance, business registration, immigration support, document preparation, banking assistance, tax and accounting guidance, and settlement support for individuals, families, and businesses.",
+        },
+      ],
+    },
     cta: {
       heading: "Start your relocation with a reliable partner",
       sub: "Whether you're planning to relocate, register a business, obtain a residence permit, or need accounting support, the ReloPartner Armenia team is ready to offer professional solutions and comprehensive support at every stage. Contact us for a personal consultation and to discuss the best way to work together.",
@@ -307,10 +362,35 @@ export const translations: Record<Locale, Dictionary> = {
     },
     servicesPage: {
       eyebrow: "Services",
-      heading: "Our services",
+      heading: "Relocation Services in Armenia for Individuals and Businesses",
+      intro:
+        "ReloPartner Armenia provides comprehensive relocation services for individuals, entrepreneurs, and businesses moving to Armenia. Our team offers end-to-end support, including residence permit applications, company registration, work permits, citizenship assistance, accounting, tax compliance, and legal support.",
       sub: "Explore our full range of relocation, business, and accounting services.",
       notSureHeading: "Not sure which service you need?",
       notSureSub: "Get in touch and we'll help you find the right solution.",
+      faqHeading: "Frequently asked questions",
+      faqs: [
+        {
+          question: "What relocation services does ReloPartner provide in Armenia?",
+          answer:
+            "ReloPartner Armenia offers comprehensive relocation services, including residence permit applications, company registration, work permits, citizenship assistance, accounting and tax support, document preparation, and guidance throughout the relocation process for individuals and businesses.",
+        },
+        {
+          question: "Can foreigners register a business in Armenia?",
+          answer:
+            "Yes. Foreign citizens can register a sole proprietorship (IE) or a company in Armenia. We assist with company registration, tax registration, legal documentation, and ongoing compliance.",
+        },
+        {
+          question: "How long does it take to register a business in Armenia?",
+          answer:
+            "Business registration is generally completed within a few business days once all required documents have been prepared. The exact timeframe depends on the type of business entity and any additional procedures.",
+        },
+        {
+          question: "Why choose ReloPartner Armenia?",
+          answer:
+            "ReloPartner Armenia provides end-to-end relocation support with experienced legal and accounting professionals, multilingual assistance, transparent communication, and personalized solutions for individuals, entrepreneurs, and international businesses relocating to Armenia.",
+        },
+      ],
     },
     contactPage: {
       eyebrow: "Contact",
@@ -390,6 +470,23 @@ export const translations: Record<Locale, Dictionary> = {
       getConsultation: "Get a consultation",
       rights: "All rights reserved.",
     },
+    meta: {
+      home: {
+        title: "Relocation to Armenia | Business Setup & Residency Experts",
+        description:
+          "Move to Armenia with confidence. We provide company registration, residence permits, immigration, banking, accounting, and relocation support.",
+      },
+      services: {
+        title: "Relocation Services in Armenia | Business & Immigration",
+        description:
+          "Professional relocation services in Armenia including company formation, residence permits, immigration, tax consulting, accounting, and legal support.",
+      },
+      contact: {
+        title: "Contact Our Armenia Relocation Experts",
+        description:
+          "Need help relocating to Armenia? Contact our team for personalized support with residency, company registration, immigration, and business relocation.",
+      },
+    },
   },
   ru: {
     brand: "ReloPartner Armenia",
@@ -403,7 +500,7 @@ export const translations: Record<Locale, Dictionary> = {
     hero: {
       eyebrow: "Релокация в Армению",
       headlinePre: "Комплексное сопровождение релокации в ",
-      headlineAccent: "Республику Армения",
+      headlineAccent: "Армению",
       headlineSuffix: "",
       sub: "Мы сопровождаем физических лиц, предпринимателей и компании на всех этапах релокации, обеспечивая профессиональную миграционную, корпоративную и бухгалтерскую поддержку.",
       subSecondary:
@@ -541,6 +638,48 @@ export const translations: Record<Locale, Dictionary> = {
         { title: "Дальнейшая поддержка клиента" },
       ],
     },
+    whyChoose: {
+      eyebrow: "Почему мы",
+      heading: "Почему выбирают ReloPartner?",
+      items: [
+        "Экспертное знание законодательства и процедур Республики Армения.",
+        "Поддержка клиентов на нескольких языках.",
+        "Комплексное сопровождение релокации «под ключ».",
+        "Юридическая, корпоративная и бухгалтерская поддержка в одном месте.",
+        "Сопровождение как до переезда, так и после начала жизни и ведения бизнеса в Армении.",
+      ],
+    },
+    homeFaq: {
+      eyebrow: "FAQ",
+      heading: "Часто задаваемые вопросы",
+      items: [
+        {
+          question: "Как переехать в Армению?",
+          answer:
+            "Иностранные граждане могут переехать в Армению, выбрав подходящее основание для проживания, подготовив необходимые документы и пройдя все регистрационные процедуры. ReloPartner сопровождает клиентов на каждом этапе релокации — от первичной консультации до получения необходимых документов и адаптации в стране.",
+        },
+        {
+          question: "Можно ли зарегистрировать ИП или ООО в Армении удаленно?",
+          answer:
+            "Да, в некоторых случаях иностранные граждане могут зарегистрировать ИП или ООО в Армении дистанционно по доверенности. Возможность удаленной регистрации зависит от выбранной организационно-правовой формы, гражданства заявителя и требований государственных органов. Специалисты ReloPartner помогут оценить вашу ситуацию, подготовить необходимые документы и организовать процесс регистрации с минимальным личным участием.",
+        },
+        {
+          question: "Сколько времени занимает регистрация ИП в Армении?",
+          answer:
+            "При наличии всех необходимых документов регистрация ИП обычно занимает от одного рабочего дня. Дополнительное время может потребоваться для открытия банковского счета и оформления сопутствующих документов.",
+        },
+        {
+          question: "Почему Армения является привлекательной страной для релокации?",
+          answer:
+            "Армения предлагает благоприятные условия для жизни и ведения бизнеса, доступную стоимость проживания, простую процедуру регистрации компаний и возможности для предпринимателей, удаленных специалистов и семей, планирующих переезд.",
+        },
+        {
+          question: "Какие услуги по релокации в Армению предоставляет ReloPartner?",
+          answer:
+            "ReloPartner предоставляет комплексные услуги по релокации в Армению, включая помощь в получении вида на жительство, регистрацию ИП и юридических лиц, миграционное сопровождение, подготовку документов, помощь в открытии банковского счета, бухгалтерское и налоговое сопровождение, а также поддержку при адаптации после переезда.",
+        },
+      ],
+    },
     cta: {
       heading: "Начните процесс релокации с надежным партнером",
       sub: "Независимо от того, планируете ли вы переезд, регистрацию бизнеса, получение вида на жительство или бухгалтерское сопровождение деятельности, команда ReloPartner Armenia готова предложить профессиональные решения и обеспечить комплексную поддержку на каждом этапе. Свяжитесь с нами, чтобы получить персональную консультацию и обсудить оптимальный формат сотрудничества.",
@@ -548,10 +687,35 @@ export const translations: Record<Locale, Dictionary> = {
     },
     servicesPage: {
       eyebrow: "Услуги",
-      heading: "Наши услуги",
+      heading: "Услуги по релокации в Армению для физических лиц и бизнеса",
+      intro:
+        "ReloPartner Armenia предоставляет комплексные услуги по релокации для физических лиц, предпринимателей и компаний, планирующих переезд или развитие бизнеса в Республике Армения. Мы сопровождаем клиентов на всех этапах — от оформления вида на жительство и регистрации бизнеса до получения разрешений на работу, бухгалтерского и налогового сопровождения, а также взаимодействия с государственными органами.",
       sub: "Ознакомьтесь с полным спектром услуг по релокации, бизнесу и бухгалтерии.",
       notSureHeading: "Не уверены, какая услуга вам нужна?",
       notSureSub: "Свяжитесь с нами, и мы поможем найти подходящее решение.",
+      faqHeading: "Часто задаваемые вопросы",
+      faqs: [
+        {
+          question: "Какие услуги по релокации в Армению предоставляет ReloPartner?",
+          answer:
+            "ReloPartner Armenia предоставляет комплексные услуги по релокации, включая помощь в получении вида на жительство, регистрацию ИП и юридических лиц, оформление разрешений на работу, сопровождение при получении гражданства, бухгалтерское и налоговое сопровождение, подготовку документов и профессиональную поддержку на всех этапах переезда для физических лиц и бизнеса.",
+        },
+        {
+          question: "Могут ли иностранные граждане зарегистрировать бизнес в Армении?",
+          answer:
+            "Да. Иностранные граждане могут зарегистрировать ИП или юридическое лицо в Армении. Мы помогаем с регистрацией бизнеса, постановкой на налоговый учет, подготовкой необходимых документов и дальнейшим сопровождением в соответствии с требованиями законодательства.",
+        },
+        {
+          question: "Сколько времени занимает регистрация бизнеса в Армении?",
+          answer:
+            "При наличии всех необходимых документов регистрация бизнеса обычно занимает несколько рабочих дней. Срок зависит от выбранной организационно-правовой формы и необходимости прохождения дополнительных процедур.",
+        },
+        {
+          question: "Почему выбирают ReloPartner Armenia?",
+          answer:
+            "ReloPartner Armenia предлагает комплексное сопровождение релокации, объединяя опыт специалистов в области миграционного, корпоративного и налогового права. Мы обеспечиваем многоязычную поддержку, прозрачность процессов и индивидуальный подход к каждому клиенту.",
+        },
+      ],
     },
     contactPage: {
       eyebrow: "Контакты",
@@ -631,6 +795,23 @@ export const translations: Record<Locale, Dictionary> = {
       getConsultation: "Получить консультацию",
       rights: "Все права защищены.",
     },
+    meta: {
+      home: {
+        title: "Релокация в Армению | Регистрация бизнеса и ВНЖ",
+        description:
+          "Переезжайте в Армению с профессиональной поддержкой. Регистрация компании, получение ВНЖ, иммиграционные услуги, бухгалтерия, банковское сопровождение и налоговые консультации.",
+      },
+      services: {
+        title: "Услуги по релокации в Армению | Регистрация компании и ВНЖ",
+        description:
+          "Комплексные услуги по релокации в Армению: регистрация бизнеса, получение ВНЖ, иммиграционная поддержка, бухгалтерия, налоги, банковские услуги и юридическое сопровождение.",
+      },
+      contact: {
+        title: "Свяжитесь с экспертами по релокации в Армению",
+        description:
+          "Свяжитесь с нашей командой для консультации по переезду в Армению, регистрации компании, оформлению ВНЖ, иммиграции и сопровождению бизнеса.",
+      },
+    },
   },
   hy: {
     brand: "ReloPartner Armenia",
@@ -643,9 +824,9 @@ export const translations: Record<Locale, Dictionary> = {
     },
     hero: {
       eyebrow: "Տեղափոխություն Հայաստան",
-      headlinePre: "Աջակցություն ",
-      headlineAccent: "Հայաստանի Հանրապետություն",
-      headlineSuffix: " տեղափոխվելու համար",
+      headlinePre: "Ռելոկացիոն ",
+      headlineAccent: "ծառայություններ",
+      headlineSuffix: " Հայաստանում",
       sub: "Մենք աջակցում ենք ֆիզիկական անձանց, ձեռնարկատերերին և ընկերություններին տեղափոխության բոլոր փուլերում՝ ապահովելով պրոֆեսիոնալ միգրացիոն, կորպորատիվ և հաշվապահական աջակցություն։",
       subSecondary:
         "Կացության կարգավիճակի ձեռքբերումից և բիզնեսի գրանցումից մինչև հաշվապահական սպասարկում և պետական մարմինների հետ փոխգործակցություն՝ մենք առաջարկում ենք համալիր լուծումներ, որոնք թույլ են տալիս մեր հաճախորդներին կենտրոնանալ անձնական նպատակների և բիզնեսի զարգացման վրա։",
@@ -783,6 +964,48 @@ export const translations: Record<Locale, Dictionary> = {
         { title: "Հաճախորդի հետագա աջակցություն" },
       ],
     },
+    whyChoose: {
+      eyebrow: "Ինչու մենք",
+      heading: "Ինչու՞ ընտրել ReloPartner Armenia-ն",
+      items: [
+        "Անհատական մոտեցում յուրաքանչյուր հաճախորդի նկատմամբ։",
+        "Իրավական և հաշվապահական փորձագիտական աջակցություն։",
+        "Բազմալեզու սպասարկում։",
+        "Ուղեկցում մինչև բոլոր գործընթացների հաջող ավարտը։",
+        "Աջակցություն ինչպես տեղափոխվելուց առաջ, այնպես էլ դրանից հետո։",
+      ],
+    },
+    homeFaq: {
+      eyebrow: "FAQ",
+      heading: "Հաճախ տրվող հարցեր",
+      items: [
+        {
+          question: "Ինչպե՞ս տեղափոխվել Հայաստան։",
+          answer:
+            "Օտարերկրյա քաղաքացիները կարող են տեղափոխվել Հայաստան՝ ընտրելով համապատասխան հիմքը, պատրաստելով անհրաժեշտ փաստաթղթերը և անցնելով սահմանված գրանցման ընթացակարգերը։ ReloPartner-ը տրամադրում է ամբողջական աջակցություն տեղափոխության յուրաքանչյուր փուլում։",
+        },
+        {
+          question: "Կարո՞ղ են օտարերկրացիները գրանցել ընկերություն Հայաստանում։",
+          answer:
+            "Այո՛, օտարերկրյա քաղաքացիները կարող են գրանցել ԱՁ կամ ընկերություն Հայաստանում։ ReloPartner-ը աջակցում է բիզնեսի գրանցմանը, հարկային հաշվառմանը, բանկային հաշվի բացմանը և իրավական գործընթացների կազմակերպմանը։",
+        },
+        {
+          question: "Ինչպե՞ս ստանալ կացության թույլտվություն Հայաստանում։",
+          answer:
+            "Կացության թույլտվություն կարելի է ստանալ տարբեր հիմքերով՝ աշխատանքի, բիզնեսի, ընտանիքի վերամիավորման կամ օրենքով նախատեսված այլ հիմքերի միջոցով։ Մենք օգնում ենք ընտրել համապատասխան տարբերակը, պատրաստել փաստաթղթերը և ուղեկցում ենք ամբողջ գործընթացի ընթացքում։",
+        },
+        {
+          question: "Հնարավո՞ր է հեռավար գրանցել ԱՁ կամ ՍՊԸ Հայաստանում։",
+          answer:
+            "Որոշ դեպքերում հնարավոր է գրանցել ԱՁ կամ ՍՊԸ հեռավար՝ լիազորագրի հիման վրա։ Հնարավորությունը կախված է կոնկրետ իրավիճակից և գործող իրավական պահանջներից։",
+        },
+        {
+          question: "Ի՞նչ ծառայություններ է տրամադրում ReloPartner Armenia-ն։",
+          answer:
+            "ReloPartner Armenia-ն առաջարկում է տեղափոխման համալիր ծառայություններ, ներառյալ կացության թույլտվության ձևակերպում, քաղաքացիության հարցերով աջակցություն, ԱՁ և ընկերությունների գրանցում, աշխատանքի թույլտվության ստացում, բանկային հաշվի բացման աջակցություն, ինչպես նաև հաշվապահական և հարկային սպասարկում։",
+        },
+      ],
+    },
     cta: {
       heading: "Սկսեք տեղափոխության գործընթացը հուսալի գործընկերոջ հետ",
       sub: "Անկախ նրանից՝ դուք պլանավորում եք տեղափոխություն, բիզնեսի գրանցում, կացության կարգավիճակի ձեռքբերում, թե հաշվապահական սպասարկում, ReloPartner Armenia-ի թիմը պատրաստ է առաջարկել պրոֆեսիոնալ լուծումներ և ապահովել համալիր աջակցություն յուրաքանչյուր փուլում։ Կապվեք մեզ հետ՝ անհատական խորհրդատվություն ստանալու և համագործակցության արդյունավետ ձևաչափը քննարկելու համար։",
@@ -790,10 +1013,36 @@ export const translations: Record<Locale, Dictionary> = {
     },
     servicesPage: {
       eyebrow: "Ծառայություններ",
-      heading: "Մեր ծառայությունները",
+      heading: "Հայաստան տեղափոխման ծառայություններ ֆիզիկական անձանց և բիզնեսի համար",
+      intro:
+        "ReloPartner Armenia-ն տրամադրում է ծառայություններ ֆիզիկական անձանց, ձեռնարկատերերի և ընկերությունների համար, որոնք ծրագրում են տեղափոխվել Հայաստան, ստանալ կացության կարգավիճակ կամ հիմնել ու զարգացնել բիզնես։ Մենք ապահովում ենք ամբողջական ուղեկցում յուրաքանչյուր փուլում՝ սկսած կացության թույլտվության ձևակերպումից և բիզնեսի գրանցումից մինչև աշխատանքի թույլտվության ստացում, հաշվապահական և հարկային սպասարկում, ինչպես նաև պետական մարմինների հետ փոխգործակցություն։",
       sub: "Ծանոթացեք տեղափոխության, բիզնեսի և հաշվապահության ոլորտում մեր ծառայությունների ամբողջական շրջանակին։",
       notSureHeading: "Վստահ չե՞ք, թե որ ծառայությունն է ձեզ անհրաժեշտ",
       notSureSub: "Կապվեք մեզ հետ, և մենք կօգնենք գտնել հարմար լուծումը։",
+      faqHeading: "Հաճախ տրվող հարցեր",
+      faqs: [
+        {
+          question:
+            "Ի՞նչ ծառայություններ է տրամադրում ReloPartner Armenia-ն Հայաստանի տեղափոխության համար։",
+          answer:
+            "ReloPartner Armenia-ն տրամադրում է տեղափոխության համալիր ծառայություններ, ներառյալ կացության թույլտվության ձևակերպում, ԱՁ և ընկերությունների գրանցում, աշխատանքի թույլտվության ստացում, քաղաքացիության հարցերով աջակցություն, հաշվապահական և հարկային սպասարկում, փաստաթղթերի պատրաստում և ամբողջ գործընթացի ընթացքում մասնագիտական ուղեկցում ֆիզիկական անձանց և բիզնեսի համար։",
+        },
+        {
+          question: "Կարո՞ղ են օտարերկրացիները գրանցել բիզնես Հայաստանում։",
+          answer:
+            "Այո՛։ Օտարերկրյա քաղաքացիները կարող են գրանցել ԱՁ կամ ընկերություն Հայաստանում։ Մենք աջակցում ենք բիզնեսի գրանցմանը, հարկային հաշվառմանը, անհրաժեշտ փաստաթղթերի պատրաստմանը և հետագա իրավական ու հաշվապահական ուղեկցմանը։",
+        },
+        {
+          question: "Որքա՞ն ժամանակ է տևում բիզնեսի գրանցումը Հայաստանում։",
+          answer:
+            "Բոլոր անհրաժեշտ փաստաթղթերի առկայության դեպքում բիզնեսի գրանցումը սովորաբար իրականացվում է մի քանի աշխատանքային օրվա ընթացքում։ Վերջնական ժամկետը կախված է ընտրված կազմակերպաիրավական ձևից և անհրաժեշտ լրացուցիչ ընթացակարգերից։",
+        },
+        {
+          question: "Ինչու՞ ընտրել ReloPartner Armenia-ն։",
+          answer:
+            "ReloPartner Armenia-ն առաջարկում է տեղափոխության ամբողջական աջակցություն՝ համատեղելով միգրացիոն, կորպորատիվ, իրավական և հաշվապահական փորձագիտությունը։ Մենք ապահովում ենք բազմալեզու սպասարկում, թափանցիկ գործընթացներ և անհատական մոտեցում յուրաքանչյուր հաճախորդի համար։",
+        },
+      ],
     },
     contactPage: {
       eyebrow: "Կապ",
@@ -872,6 +1121,23 @@ export const translations: Record<Locale, Dictionary> = {
       tagline: "Տեղափոխության, բիզնեսի և հաշվապահության համալիր աջակցություն Հայաստանում։",
       getConsultation: "Ստանալ խորհրդատվություն",
       rights: "Բոլոր իրավունքները պաշտպանված են։",
+    },
+    meta: {
+      home: {
+        title: "Ռելոկացիա Հայաստան | Բիզնեսի գրանցում և Բնակության թույլտվություն",
+        description:
+          "Ռելոկացիա Հայաստան՝ ամբողջական աջակցությամբ։ Օգնում ենք տեղափոխվել Հայաստան, գրանցել բիզնես, ստանալ բնակության թույլտվություն, հարկային և իրավաբանական աջակցություն։",
+      },
+      services: {
+        title: "Ռելոկացիայի ծառայություններ Հայաստանում | Բիզնես և Իմիգրացիա",
+        description:
+          "Մասնագիտական ռելոկացիայի ծառայություններ Հայաստանում՝ ընկերության գրանցում, բնակության թույլտվություն, ներգաղթի աջակցություն, հաշվապահություն, հարկային և բիզնես խորհրդատվություն։",
+      },
+      contact: {
+        title: "Կապվեք Ռելոկացիայի մասնագետների հետ Հայաստանում",
+        description:
+          "Կապվեք մեր ռելոկացիայի մասնագետների հետ՝ Հայաստան տեղափոխվելու, բիզնես ստեղծելու, բնակության թույլտվություն ստանալու և ներգաղթի գործընթացները կազմակերպելու համար։",
+      },
     },
   },
 };

@@ -1,25 +1,31 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { locales, localeLabels } from "@/lib/translations";
+import { localePath, switchLocalePath } from "@/lib/routing";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { locale, setLocale, t } = useLanguage();
+  const { locale, t } = useLanguage();
+  const pathname = usePathname();
 
   const navLinks = [
-    { href: "/", label: t.nav.home },
-    { href: "/services", label: t.nav.services },
-    { href: "/contact", label: t.nav.contact },
+    { href: localePath(locale, "home"), label: t.nav.home },
+    { href: localePath(locale, "services"), label: t.nav.services },
+    { href: localePath(locale, "contact"), label: t.nav.contact },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
+        <Link
+          href={localePath(locale, "home")}
+          className="text-lg font-semibold tracking-tight"
+        >
           ReloPartner<span className="text-accent"> Armenia</span>
         </Link>
 
@@ -39,7 +45,7 @@ export default function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <LanguageSwitcher />
           <Link
-            href="/contact"
+            href={localePath(locale, "contact")}
             className="rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-accent"
           >
             {t.nav.getConsultation}
@@ -74,7 +80,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href={localePath(locale, "contact")}
             onClick={() => setOpen(false)}
             className="mt-2 rounded-lg bg-foreground px-5 py-2.5 text-center text-sm font-semibold text-background"
           >
@@ -83,19 +89,20 @@ export default function Header() {
 
           <div className="mt-4 flex items-center gap-2 border-t border-border pt-4">
             {locales.map((code) => (
-              <button
+              <Link
                 key={code}
-                type="button"
-                onClick={() => setLocale(code)}
-                aria-pressed={locale === code}
-                className={`flex-1 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors ${
+                href={switchLocalePath(pathname, code)}
+                hrefLang={code}
+                onClick={() => setOpen(false)}
+                aria-current={locale === code ? "true" : undefined}
+                className={`flex-1 rounded-lg border px-3 py-2 text-center text-sm font-semibold transition-colors ${
                   locale === code
                     ? "border-accent bg-accent/10 text-accent-dark"
                     : "border-border text-foreground/70"
                 }`}
               >
                 {localeLabels[code]}
-              </button>
+              </Link>
             ))}
           </div>
         </nav>

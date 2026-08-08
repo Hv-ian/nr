@@ -4,9 +4,11 @@ import type { ServiceItem } from "@/lib/translations";
 export default function ServiceCard({
   service,
   ctaLabel,
+  href,
 }: {
   service: ServiceItem;
   ctaLabel: string;
+  href: string;
 }) {
   return (
     <div className="group flex h-full flex-col rounded-2xl border border-border bg-background p-6 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10">
@@ -42,7 +44,7 @@ export default function ServiceCard({
       </div>
 
       <Link
-        href={`/contact?service=${service.slug}`}
+        href={href}
         className="mt-6 inline-flex items-center justify-center rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-accent"
       >
         {ctaLabel}

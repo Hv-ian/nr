@@ -3,20 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import ServiceCard from "@/components/ServiceCard";
+import FaqAccordion from "@/components/FaqAccordion";
 import { useLanguage } from "@/components/LanguageProvider";
+import { localePath } from "@/lib/routing";
 
 export default function ServicesContent() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <>
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <span className="eyebrow">{t.servicesPage.eyebrow}</span>
-        <h1 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
           {t.servicesPage.heading}
         </h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-          {t.servicesPage.sub}
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted">
+          {t.servicesPage.intro}
         </p>
 
         <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-3xl">
@@ -36,12 +38,25 @@ export default function ServicesContent() {
               key={service.slug}
               service={service}
               ctaLabel={t.services.getConsultation}
+              href={`${localePath(locale, "contact")}?service=${service.slug}`}
             />
           ))}
         </div>
       </section>
 
+      {/* FAQ */}
       <section className="border-t border-border bg-surface">
+        <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            {t.servicesPage.faqHeading}
+          </h2>
+          <div className="mt-8">
+            <FaqAccordion faqs={t.servicesPage.faqs} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
         <div className="mx-auto max-w-6xl px-6 py-14 text-center">
           <h2 className="text-2xl font-semibold tracking-tight">
             {t.servicesPage.notSureHeading}
@@ -50,7 +65,7 @@ export default function ServicesContent() {
             {t.servicesPage.notSureSub}
           </p>
           <Link
-            href="/contact"
+            href={localePath(locale, "contact")}
             className="mt-6 inline-flex rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
           >
             {t.services.getConsultation}

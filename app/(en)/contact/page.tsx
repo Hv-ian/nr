@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import ContactContent from "@/components/ContactContent";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Get a Consultation | ReloPartner Armenia",
-  description:
-    "Request a consultation for relocation, residence permits, business registration, or accounting support in Armenia.",
-};
+export const metadata: Metadata = pageMetadata("en", "contact");
 
 export default function ContactPage() {
   return (
