@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ServicesContent from "@/components/ServicesContent";
 import { pageMetadata } from "@/lib/metadata";
+import StructuredData from "@/components/StructuredData";
 import { INTL_LOCALES, isIntlLocale } from "@/lib/intl-locales";
 
 export function generateStaticParams() {
@@ -18,6 +19,14 @@ export async function generateMetadata({
   return pageMetadata(locale, "services");
 }
 
-export default function IntlServicesPage() {
-  return <ServicesContent />;
+export default async function IntlServicesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isIntlLocale(locale)) notFound();
+
+  return (
+    <>
+      <StructuredData locale={locale} page="services" />
+      <ServicesContent />
+    </>
+  );
 }

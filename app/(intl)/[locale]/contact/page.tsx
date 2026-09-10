@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import ContactContent from "@/components/ContactContent";
 import { pageMetadata } from "@/lib/metadata";
+import StructuredData from "@/components/StructuredData";
 import { INTL_LOCALES, isIntlLocale } from "@/lib/intl-locales";
 
 export function generateStaticParams() {
@@ -19,10 +20,16 @@ export async function generateMetadata({
   return pageMetadata(locale, "contact");
 }
 
-export default function IntlContactPage() {
+export default async function IntlContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isIntlLocale(locale)) notFound();
+
   return (
-    <Suspense fallback={null}>
-      <ContactContent />
-    </Suspense>
+    <>
+      <StructuredData locale={locale} page="contact" />
+      <Suspense fallback={null}>
+        <ContactContent />
+      </Suspense>
+    </>
   );
 }
