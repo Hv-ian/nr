@@ -159,9 +159,6 @@ export type Dictionary = {
     rights: string;
   };
   meta: {
-    /** One-line description of the company, used by the Organization structured data. */
-    organization: string;
-    countryName: string;
     home: { title: string; description: string };
     services: { title: string; description: string };
     contact: { title: string; description: string };
@@ -474,8 +471,6 @@ export const translations: Record<Locale, Dictionary> = {
       rights: "All rights reserved.",
     },
     meta: {
-      organization: "Comprehensive relocation, business and accounting support in Armenia.",
-      countryName: "Armenia",
       home: {
         title: "Relocation to Armenia | Business Setup & Residency Experts",
         description:
@@ -801,8 +796,6 @@ export const translations: Record<Locale, Dictionary> = {
       rights: "Все права защищены.",
     },
     meta: {
-      organization: "Комплексное сопровождение релокации, бизнеса и бухгалтерии в Армении.",
-      countryName: "Армения",
       home: {
         title: "Релокация в Армению | Регистрация бизнеса и ВНЖ",
         description:
@@ -1130,9 +1123,6 @@ export const translations: Record<Locale, Dictionary> = {
       rights: "Բոլոր իրավունքները պաշտպանված են։",
     },
     meta: {
-      organization:
-        "Տեղափոխության, բիզնեսի և հաշվապահության համալիր աջակցություն Հայաստանում։",
-      countryName: "Հայաստան",
       home: {
         title: "Ռելոկացիա Հայաստան | Բիզնեսի գրանցում և Բնակության թույլտվություն",
         description:
