@@ -1,30 +1,42 @@
-# Sveltia CMS configuration for relopartner.org
+# Decap CMS configuration for relopartner.org
 #
-# Editors sign in with GitHub and save posts straight into this repository.
-# A save is a commit; the commit triggers the GitHub Actions build, which
-# republishes the site. There is no server involved anywhere in that chain.
+# Authentication and user management run through DecapBridge, so editors sign
+# in with their own email and password (or Google or Microsoft) rather than a
+# GitHub account. Saving an entry is a commit to this repository; the commit
+# triggers the GitHub Actions build, which republishes the site. No server is
+# involved anywhere in that chain, which is what lets the admin panel live on
+# GitHub Pages.
+#
+# Editors are invited from the DecapBridge dashboard. Removing someone there
+# revokes their access immediately.
 
 backend:
-  name: github
+  name: git-gateway
   repo: Hv-ian/nr
   branch: main
-  # Editors sign in from the login screen with "Sign in with Token", pasting a
-  # GitHub personal access token that has write access to this repository. The
-  # token is held in that browser's local storage and never leaves it.
-  #
-  # To replace that with a one-click "Sign in with GitHub" button instead,
-  # deploy the Sveltia CMS Authenticator to Cloudflare Workers (free) and
-  # uncomment the line below, pointing it at your worker. Leaving it unset
-  # makes the GitHub button fall back to Netlify's OAuth service, which is
-  # not connected to this project and will not work.
-  #
-  # base_url: https://your-worker-name.workers.dev
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/8b2d9a3d-b41c-475e-9863-e150c1cc263a/pkce
+  auth_token_endpoint: /sites/8b2d9a3d-b41c-475e-9863-e150c1cc263a/token
+  gateway_url: https://gateway.decapbridge.com
+
+  # Commits are attributed to the repository owner's account, because "Hide
+  # commit author" is enabled in DecapBridge. Naming the editor in the message
+  # keeps a record of who published what without adding them as contributors.
   commit_messages:
-    create: 'Blog: add "{{slug}}"'
-    update: 'Blog: update "{{slug}}"'
-    delete: 'Blog: delete "{{slug}}"'
-    uploadMedia: 'Blog: add image {{path}}'
-    deleteMedia: 'Blog: delete image {{path}}'
+    create: Create {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+# Maps the fields DecapBridge returns about the signed-in editor.
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
 
 site_url: https://relopartner.org
 display_url: https://relopartner.org
@@ -34,8 +46,8 @@ logo_url: https://relopartner.org/images/ararat.avif
 media_folder: public/images/blog
 public_folder: /images/blog
 
-# Every post exists in all three languages. Sveltia shows one tab per locale
-# and will not let a required field stay empty in any of them.
+# Every post exists in all three languages. Decap shows one tab per locale and
+# will not let a required field stay empty in any of them.
 i18n:
   structure: multiple_folders
   locales: [en, ru, hy]
@@ -81,8 +93,8 @@ collections:
         i18n: duplicate
         choose_url: false
         hint: >-
-          Wide landscape image, ideally at least 1600 pixels across. The same
-          image is used for all three languages.
+          Landscape photo, at least 1600 pixels wide or it will look soft on
+          large screens. The same image is used for all three languages.
 
       - name: imageFocus
         label: Image crop

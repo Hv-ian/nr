@@ -9,10 +9,15 @@
   </head>
   <body>
     <!--
-      Sveltia CMS. It runs entirely in the browser, signs the editor in against
-      GitHub, and commits posts straight to the repository. The push triggers the
-      GitHub Actions build, which republishes the site.
+      Decap CMS, authenticated through DecapBridge. It runs entirely in the
+      browser: editors sign in with their own email and password (or Google or
+      Microsoft), and saving a post commits it to this repository, which starts
+      the GitHub Actions build that republishes the site.
+
+      Pinned deliberately. DecapBridge's PKCE flow needs v3.8.3 or newer, and an
+      unpinned CDN URL would let a future release change the admin panel without
+      anything in this repository changing.
     -->
-    <script src="https://unpkg.com/@sveltia/cms@0.209.1/dist/sveltia-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.16.2/dist/decap-cms.js"></script>
   </body>
 </html>

@@ -2,29 +2,20 @@
 
 The blog is edited at **https://relopartner.org/admin/**.
 
-There is no separate password database. The admin panel runs entirely in the
-browser and saves posts directly into this GitHub repository, so signing in
-means proving you have write access to the repository. Anyone can open the
-`/admin/` page, but without a valid token it shows only the sign-in screen and
-can neither read nor change anything.
+Logins are handled by [DecapBridge](https://decapbridge.com/). Writers sign in
+with their own email and password, or with Google or Microsoft. They do not
+need a GitHub account and never handle a token. Anyone can open the `/admin/`
+page, but without an account it shows only the login screen.
 
-## One-time setup for each editor
+## Adding a writer
 
-1. The editor needs a GitHub account, added as a collaborator on `Hv-ian/nr`
-   with write access (Settings → Collaborators → Add people).
-2. They create a personal access token:
-   - GitHub → Settings → Developer settings → Personal access tokens
-   - Fine-grained token, repository access limited to `Hv-ian/nr`
-   - Repository permissions: **Contents → Read and write**
-   - Set an expiry that suits you; the token has to be regenerated after it lapses
-3. They open https://relopartner.org/admin/, click **Sign in with Token**, and
-   paste it. The token is stored in that browser only and is not sent anywhere
-   except GitHub.
+1. Open the DecapBridge dashboard for this site.
+2. Invite them by email address.
+3. They get an email, click the link, and set their own password.
 
-Ignore the **Sign in with GitHub** button. Without extra infrastructure it
-routes through Netlify's OAuth service, which this project does not use. See
-the note in `public/admin/config.yml` if you later want that one-click button:
-it needs a small free Cloudflare Worker.
+That is the whole process. They can reset a forgotten password themselves.
+Removing someone from the dashboard revokes their access immediately, with no
+change to this repository.
 
 ## Writing a post
 
@@ -36,6 +27,7 @@ Click **Blog posts → New**. Each post has three language tabs, `en`, `ru` and
 | Title | The headline. Becomes the card title and the page's H1. |
 | Short description | One or two sentences. Shown on the card and used by Google. |
 | Cover image | Upload once; shared by all three languages. Landscape, 1600px wide or more. |
+| Image crop | Which part to keep when the photo is cropped to fit. Use "top" when the subject sits high in the frame, like a flag or a mountain peak. |
 | Category | Drives the filter tabs and the category pages. |
 | Publication date | Controls ordering; newest first. |
 | Feature at the top | Fills the large panel above the grid. Newest wins if several are set. |
@@ -63,6 +55,12 @@ Hit **Save**. That writes a commit to the repository, which starts the GitHub
 Actions build. The article is live at `relopartner.org/blog/` about two to
 three minutes later. Progress is visible under the repository's Actions tab.
 
+Commits are attributed to the repository owner's GitHub account rather than to
+the writer, because **Hide commit author** is enabled in DecapBridge. The
+writer's name still appears in the commit message, so you can see who published
+what. Turning that setting off makes each writer the commit author instead, at
+the cost of listing them as repository contributors.
+
 ## Where the files live
 
 ```
@@ -78,9 +76,19 @@ is served at `/blog/cost-of-living-in-armenia/`.
 Posts can equally be written by editing those files directly. The CMS is a
 convenience on top of them, not a separate system.
 
-## One caveat
+## Maintenance
 
-At least one post must be published in all three languages at any time. The
-site is a static export, and an empty blog leaves the article route with no
-pages to generate, which fails the build. Use the **Draft** switch to retire a
-post rather than deleting the last one.
+**The GitHub token.** DecapBridge holds a fine-grained personal access token,
+scoped to this repository only, with Contents read and write. It is what commits
+posts on a writer's behalf. If it is ever revoked or expires, publishing stops
+working but the live site is unaffected. Replace it by generating a new token at
+<https://github.com/settings/personal-access-tokens/new> and pasting it into the
+DecapBridge site settings; no code change or deploy is needed.
+
+**Keep at least one published post.** The site is a static export, and an empty
+blog leaves the article route with no pages to generate, which fails the build.
+Use the **Draft** switch to retire a post rather than deleting the last one.
+
+**Decap CMS is pinned** to an exact version in `public/admin/index.html`, so a
+new upstream release cannot change the admin panel without a deliberate edit.
+DecapBridge's PKCE login needs v3.8.3 or newer.
