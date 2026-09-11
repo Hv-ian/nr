@@ -112,18 +112,33 @@ function normalizeDate(value: unknown): string | null {
   return null;
 }
 
-function parse(locale: Locale, slug: string, raw: string): Post {
+/**
+ * Reads one Markdown file, or returns null if it is not publishable yet.
+ *
+ * The CMS writes a file per locale as soon as an entry is saved, so a post
+ * whose translations are still empty arrives as a file with only the shared
+ * fields and no title or body. That is a normal editorial state, not a
+ * corrupt repository, so it must never fail the build: an unfinished
+ * translation would otherwise block every deploy, including unrelated ones.
+ * The post is skipped instead, and the reason is logged so it is visible in
+ * the build output.
+ */
+function parse(locale: Locale, slug: string, raw: string): Post | null {
   const { data, content } = matter(raw);
   const front = data as Partial<PostFrontmatter>;
   const date = normalizeDate(data.date);
 
-  if (!front.title || !front.description || !date) {
-    throw new Error(`content/blog/${locale}/${slug}.md is missing title, description or date`);
-  }
+  const skip = (reason: string) => {
+    console.warn(`[blog] skipping content/blog/${locale}/${slug}.md: ${reason}`);
+    return null;
+  };
+
+  if (!front.title) return skip("no title yet");
+  if (!front.description) return skip("no description yet");
+  if (!date) return skip("no publication date yet");
+  if (!content.trim()) return skip("the article body is empty");
   if (!front.category || !isCategory(front.category)) {
-    throw new Error(
-      `content/blog/${locale}/${slug}.md has category "${front.category}", expected one of ${CATEGORIES.join(", ")}`
-    );
+    return skip(`category "${front.category}" is not one of ${CATEGORIES.join(", ")}`);
   }
 
   return {
@@ -154,7 +169,7 @@ export function getPosts(locale: Locale): Post[] {
     .readdirSync(dir)
     .filter((file) => file.endsWith(".md"))
     .map((file) => parse(locale, file.replace(/\.md$/, ""), fs.readFileSync(path.join(dir, file), "utf8")))
-    .filter((post) => !post.draft)
+    .filter((post): post is Post => post !== null && !post.draft)
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
@@ -163,7 +178,7 @@ export function getPost(locale: Locale, slug: string): Post | null {
   if (!fs.existsSync(file)) return null;
 
   const post = parse(locale, slug, fs.readFileSync(file, "utf8"));
-  return post.draft ? null : post;
+  return post && !post.draft ? post : null;
 }
 
 /** The post to spotlight at the top of the index: the newest one flagged `featured`, else the newest. */
