@@ -1,6 +1,18 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/translations";
-import { alternateLanguages, localeUrl, type PageKey } from "@/lib/routing";
+import {
+  alternateLanguages,
+  alternatesFor,
+  blogCategoryPath,
+  blogCategoryUrl,
+  blogPath,
+  blogPostPath,
+  blogPostUrl,
+  blogUrl,
+  localeUrl,
+  type PageKey,
+} from "@/lib/routing";
+import { getActiveCategories, getPost, getTranslatedSlugs } from "@/lib/blog";
 
 type PageConfig = {
   page: PageKey;
@@ -21,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // One entry per language version of each page, each carrying the full
   // hreflang cluster so search engines can group them.
-  return PAGES.flatMap(({ page, changeFrequency, priority }) =>
+  const staticPages = PAGES.flatMap(({ page, changeFrequency, priority }) =>
     locales.map((locale) => ({
       url: localeUrl(locale, page),
       lastModified,
@@ -30,4 +42,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: alternateLanguages(page) },
     }))
   );
+
+  const blogIndex = locales.map((locale) => ({
+    url: blogUrl(locale),
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+    alternates: { languages: alternatesFor(blogPath) },
+  }));
+
+  const categories = getActiveCategories().flatMap((category) =>
+    locales.map((locale) => ({
+      url: blogCategoryUrl(locale, category),
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+      alternates: { languages: alternatesFor((other) => blogCategoryPath(other, category)) },
+    }))
+  );
+
+  // Articles report their own publication date rather than the build time.
+  const posts = getTranslatedSlugs().flatMap((slug) =>
+    locales.map((locale) => ({
+      url: blogPostUrl(locale, slug),
+      lastModified: new Date(getPost(locale, slug)?.date ?? lastModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      alternates: { languages: alternatesFor((other) => blogPostPath(other, slug)) },
+    }))
+  );
+
+  return [...staticPages, ...blogIndex, ...categories, ...posts];
 }

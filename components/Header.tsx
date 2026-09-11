@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { locales, localeLabels } from "@/lib/translations";
-import { localePath, switchLocalePath } from "@/lib/routing";
+import { blogPath, localePath, switchLocalePath } from "@/lib/routing";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -16,6 +16,7 @@ export default function Header() {
   const navLinks = [
     { href: localePath(locale, "home"), label: t.nav.home },
     { href: localePath(locale, "services"), label: t.nav.services },
+    { href: blogPath(locale), label: t.nav.blog },
     { href: localePath(locale, "contact"), label: t.nav.contact },
   ];
 

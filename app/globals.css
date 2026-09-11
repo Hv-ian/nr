@@ -46,3 +46,149 @@ body {
   height: 2px;
   background: var(--accent);
 }
+
+/*
+ * Blog theme. The blog was signed off in a navy and white treatment rather
+ * than the terracotta used elsewhere, so its pages render a `data-theme="blog"`
+ * wrapper and the palette variables are redefined for the whole document when
+ * one is present. Using `:has()` means the shared header and footer pick up the
+ * blog palette too, instead of leaving a terracotta bar above a navy page.
+ */
+body:has([data-theme="blog"]) {
+  --background: #ffffff;
+  --surface: #f4f7fb;
+  --foreground: #10233f;
+  --muted: #5b6b82;
+  --border: #dde5ee;
+  --accent: #1f4e7a;
+  --accent-dark: #10233f;
+}
+
+/* Headings on the blog use the serif face from the approved design. */
+[data-theme="blog"] :is(h1, h2, h3) {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Long-form article body, rendered from Markdown so it carries no utility classes. */
+.article-body {
+  color: var(--foreground);
+  line-height: 1.75;
+  counter-reset: article-step;
+}
+
+.article-body > * + * {
+  margin-top: 1.25rem;
+}
+
+.article-body :is(h2, h3) {
+  margin-top: 2.75rem;
+  line-height: 1.3;
+  scroll-margin-top: 6rem;
+}
+
+.article-body h2 {
+  font-size: 1.6rem;
+}
+
+.article-body h3 {
+  font-size: 1.15rem;
+}
+
+.article-body :is(ul, ol) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.article-body li + li {
+  margin-top: 0.75rem;
+}
+
+/* Bulleted requirements read as a checklist, per the approved design. */
+.article-body ul > li {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.article-body ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 1rem;
+  height: 0.55rem;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* Ordered steps get a numbered disc. */
+.article-body ol > li {
+  position: relative;
+  padding-left: 2.75rem;
+  counter-increment: article-step;
+}
+
+.article-body ol > li::before {
+  content: counter(article-step);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.article-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Markdown blockquotes render as the "keep in mind" information callout. */
+.article-body blockquote {
+  position: relative;
+  border-radius: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.15rem 1.25rem 1.15rem 3.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.article-body blockquote::before {
+  content: "i";
+  position: absolute;
+  left: 1.15rem;
+  top: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: var(--background);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.article-body blockquote > * + * {
+  margin-top: 0.75rem;
+}
+
+.article-body strong {
+  color: var(--foreground);
+  font-weight: 600;
+}

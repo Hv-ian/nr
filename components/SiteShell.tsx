@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/components/LanguageProvider";
@@ -13,6 +13,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+/** Display face for blog headings. Cyrillic is included for the Russian articles. */
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
 });
 
 /**
@@ -29,7 +36,7 @@ export default function SiteShell({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <LanguageProvider locale={locale}>

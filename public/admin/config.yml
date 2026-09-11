@@ -1,0 +1,146 @@
+# Sveltia CMS configuration for relopartner.org
+#
+# Editors sign in with GitHub and save posts straight into this repository.
+# A save is a commit; the commit triggers the GitHub Actions build, which
+# republishes the site. There is no server involved anywhere in that chain.
+
+backend:
+  name: github
+  repo: Hv-ian/nr
+  branch: main
+  # Editors sign in from the login screen with "Sign in with Token", pasting a
+  # GitHub personal access token that has write access to this repository. The
+  # token is held in that browser's local storage and never leaves it.
+  #
+  # To replace that with a one-click "Sign in with GitHub" button instead,
+  # deploy the Sveltia CMS Authenticator to Cloudflare Workers (free) and
+  # uncomment the line below, pointing it at your worker. Leaving it unset
+  # makes the GitHub button fall back to Netlify's OAuth service, which is
+  # not connected to this project and will not work.
+  #
+  # base_url: https://your-worker-name.workers.dev
+  commit_messages:
+    create: 'Blog: add "{{slug}}"'
+    update: 'Blog: update "{{slug}}"'
+    delete: 'Blog: delete "{{slug}}"'
+    uploadMedia: 'Blog: add image {{path}}'
+    deleteMedia: 'Blog: delete image {{path}}'
+
+site_url: https://relopartner.org
+display_url: https://relopartner.org
+logo_url: https://relopartner.org/images/ararat.avif
+
+# Uploaded images land in the site's public folder and are served from /images/blog/.
+media_folder: public/images/blog
+public_folder: /images/blog
+
+# Every post exists in all three languages. Sveltia shows one tab per locale
+# and will not let a required field stay empty in any of them.
+i18n:
+  structure: multiple_folders
+  locales: [en, ru, hy]
+  default_locale: en
+
+collections:
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    description: >-
+      Articles for relopartner.org/blog. Fill in the English, Russian and
+      Armenian tabs, then publish. The site rebuilds automatically and the
+      article appears in a couple of minutes.
+    folder: content/blog
+    create: true
+    slug: '{{slug}}'
+    preview_path: 'blog/{{slug}}'
+    i18n: true
+    summary: '{{title}}'
+    sortable_fields: [date, title]
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+    fields:
+      - name: title
+        label: Title
+        widget: string
+        i18n: true
+        hint: The article headline, shown on the card and as the page's H1.
+
+      - name: description
+        label: Short description
+        widget: text
+        i18n: true
+        hint: >-
+          Two sentences at most. Used on the blog card, under the headline, and
+          as the description Google shows in search results.
+
+      - name: image
+        label: Cover image
+        widget: image
+        i18n: duplicate
+        choose_url: false
+        hint: >-
+          Wide landscape image, ideally at least 1600 pixels across. The same
+          image is used for all three languages.
+
+      - name: imageFocus
+        label: Image crop
+        widget: select
+        i18n: duplicate
+        default: center
+        options:
+          - { label: 'Keep the top of the photo', value: top }
+          - { label: 'Keep the middle of the photo', value: center }
+          - { label: 'Keep the bottom of the photo', value: bottom }
+        hint: >-
+          Cover images are cropped to fit the cards. Choose "top" when the
+          subject sits near the top of the photo, such as a mountain peak or a
+          flag, so it is not cut off.
+
+      - name: category
+        label: Category
+        widget: select
+        i18n: duplicate
+        options:
+          - { label: 'Relocation', value: relocation }
+          - { label: 'Residence & Citizenship', value: residence }
+          - { label: 'Business in Armenia', value: business }
+          - { label: 'Tax & Accounting', value: tax }
+          - { label: 'Living in Armenia', value: living }
+          - { label: 'Banking & Finance', value: banking }
+
+      - name: date
+        label: Publication date
+        widget: datetime
+        i18n: duplicate
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        picker_utc: true
+
+      - name: featured
+        label: Feature at the top of the blog
+        widget: boolean
+        i18n: duplicate
+        default: false
+        required: false
+        hint: >-
+          The featured article fills the large panel above the grid. If more
+          than one is flagged, the newest wins.
+
+      - name: draft
+        label: Draft
+        widget: boolean
+        i18n: duplicate
+        default: false
+        required: false
+        hint: Drafts are saved to the repository but never published to the site.
+
+      - name: body
+        label: Article
+        widget: markdown
+        i18n: true
+        hint: >-
+          Use "Heading 2" for section titles; those become the table of contents
+          on the right of the article. Numbered lists render as numbered steps
+          and bullet lists as ticks. A quote block becomes the highlighted note.

@@ -35,11 +35,27 @@ export type FaqItem = {
   answer: string;
 };
 
+/**
+ * Categories a blog post can be filed under. Declared here because every
+ * category needs a label in each locale, and the CMS offers exactly this list.
+ */
+export const BLOG_CATEGORIES = [
+  "relocation",
+  "residence",
+  "business",
+  "tax",
+  "living",
+  "banking",
+] as const;
+
+export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
+
 export type Dictionary = {
   brand: string;
   nav: {
     home: string;
     services: string;
+    blog: string;
     contact: string;
     getConsultation: string;
     toggleMenu: string;
@@ -96,6 +112,25 @@ export type Dictionary = {
     heading: string;
     sub: string;
     button: string;
+  };
+  blog: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    all: string;
+    categories: Record<BlogCategory, string>;
+    readArticle: string;
+    readMore: string;
+    backToBlog: string;
+    readingTime: (minutes: number) => string;
+    relatedHeading: string;
+    tocHeading: string;
+    share: string;
+    shareCopied: string;
+    empty: string;
+    ctaHeading: string;
+    ctaSub: string;
+    ctaButton: string;
   };
   servicesPage: {
     eyebrow: string;
@@ -161,6 +196,7 @@ export type Dictionary = {
   meta: {
     home: { title: string; description: string };
     services: { title: string; description: string };
+    blog: { title: string; description: string };
     contact: { title: string; description: string };
   };
 };
@@ -171,6 +207,7 @@ export const translations: Record<Locale, Dictionary> = {
     nav: {
       home: "Home",
       services: "Services",
+      blog: "Blog",
       contact: "Contact",
       getConsultation: "Get a Consultation",
       toggleMenu: "Toggle menu",
@@ -360,6 +397,34 @@ export const translations: Record<Locale, Dictionary> = {
       sub: "Whether you're planning to relocate, register a business, obtain a residence permit, or need accounting support, the ReloPartner Armenia team is ready to offer professional solutions and comprehensive support at every stage. Contact us for a personal consultation and to discuss the best way to work together.",
       button: "Get a Consultation",
     },
+    blog: {
+      eyebrow: "Blog",
+      heading: "ReloPartner Armenia Blog",
+      intro:
+        "Practical guides and expert insights on relocating to Armenia, business, residency, and life in Armenia.",
+      all: "All",
+      categories: {
+        relocation: "Relocation",
+        residence: "Residence & Citizenship",
+        business: "Business in Armenia",
+        tax: "Tax & Accounting",
+        living: "Living in Armenia",
+        banking: "Banking & Finance",
+      },
+      readArticle: "Read Article",
+      readMore: "Read More",
+      backToBlog: "Back to Blog",
+      tocHeading: "Table of Contents",
+      share: "Share",
+      shareCopied: "Link copied",
+      readingTime: (minutes: number) => `${minutes} min read`,
+      relatedHeading: "Related articles",
+      empty: "No articles here yet. Check back soon.",
+      ctaHeading: "Planning to Relocate to Armenia?",
+      ctaSub:
+        "Get professional guidance with residence, business registration, accounting, and other relocation services.",
+      ctaButton: "Get a Consultation",
+    },
     servicesPage: {
       eyebrow: "Services",
       heading: "Relocation Services in Armenia for Individuals and Businesses",
@@ -476,6 +541,11 @@ export const translations: Record<Locale, Dictionary> = {
         description:
           "Move to Armenia with confidence. We provide company registration, residence permits, immigration, banking, accounting, and relocation support.",
       },
+      blog: {
+        title: "Blog | Relocating to Armenia, Business and Residency Guides",
+        description:
+          "Practical guides and expert insights on relocating to Armenia: residence permits, company registration, taxes, banking, and everyday life.",
+      },
       services: {
         title: "Relocation Services in Armenia | Business & Immigration",
         description:
@@ -493,6 +563,7 @@ export const translations: Record<Locale, Dictionary> = {
     nav: {
       home: "Главная",
       services: "Услуги",
+      blog: "Блог",
       contact: "Контакты",
       getConsultation: "Получить консультацию",
       toggleMenu: "Открыть меню",
@@ -685,6 +756,34 @@ export const translations: Record<Locale, Dictionary> = {
       sub: "Независимо от того, планируете ли вы переезд, регистрацию бизнеса, получение вида на жительство или бухгалтерское сопровождение деятельности, команда ReloPartner Armenia готова предложить профессиональные решения и обеспечить комплексную поддержку на каждом этапе. Свяжитесь с нами, чтобы получить персональную консультацию и обсудить оптимальный формат сотрудничества.",
       button: "Получить консультацию",
     },
+    blog: {
+      eyebrow: "Блог",
+      heading: "Блог ReloPartner Armenia",
+      intro:
+        "Практические руководства и экспертные материалы о релокации в Армению, бизнесе, видах на жительство и жизни в стране.",
+      all: "Все",
+      categories: {
+        relocation: "Релокация",
+        residence: "ВНЖ и гражданство",
+        business: "Бизнес в Армении",
+        tax: "Налоги и бухгалтерия",
+        living: "Жизнь в Армении",
+        banking: "Банки и финансы",
+      },
+      readArticle: "Читать статью",
+      readMore: "Подробнее",
+      backToBlog: "Назад в блог",
+      tocHeading: "Содержание",
+      share: "Поделиться",
+      shareCopied: "Ссылка скопирована",
+      readingTime: (minutes: number) => `${minutes} мин чтения`,
+      relatedHeading: "Похожие статьи",
+      empty: "Здесь пока нет статей. Загляните позже.",
+      ctaHeading: "Планируете переезд в Армению?",
+      ctaSub:
+        "Получите профессиональное сопровождение по вопросам вида на жительство, регистрации бизнеса, бухгалтерии и других услуг релокации.",
+      ctaButton: "Получить консультацию",
+    },
     servicesPage: {
       eyebrow: "Услуги",
       heading: "Услуги по релокации в Армению для физических лиц и бизнеса",
@@ -801,6 +900,11 @@ export const translations: Record<Locale, Dictionary> = {
         description:
           "Переезжайте в Армению с профессиональной поддержкой. Регистрация компании, получение ВНЖ, иммиграционные услуги, бухгалтерия, банковское сопровождение и налоговые консультации.",
       },
+      blog: {
+        title: "Блог | Релокация в Армению, бизнес и ВНЖ",
+        description:
+          "Практические руководства и экспертные материалы о релокации в Армению: вид на жительство, регистрация компании, налоги, банки и повседневная жизнь.",
+      },
       services: {
         title: "Услуги по релокации в Армению | Регистрация компании и ВНЖ",
         description:
@@ -818,6 +922,7 @@ export const translations: Record<Locale, Dictionary> = {
     nav: {
       home: "Գլխավոր",
       services: "Ծառայություններ",
+      blog: "Բլոգ",
       contact: "Կապ",
       getConsultation: "Ստանալ խորհրդատվություն",
       toggleMenu: "Բացել ընտրացանկը",
@@ -1011,6 +1116,34 @@ export const translations: Record<Locale, Dictionary> = {
       sub: "Անկախ նրանից՝ դուք պլանավորում եք տեղափոխություն, բիզնեսի գրանցում, կացության կարգավիճակի ձեռքբերում, թե հաշվապահական սպասարկում, ReloPartner Armenia-ի թիմը պատրաստ է առաջարկել պրոֆեսիոնալ լուծումներ և ապահովել համալիր աջակցություն յուրաքանչյուր փուլում։ Կապվեք մեզ հետ՝ անհատական խորհրդատվություն ստանալու և համագործակցության արդյունավետ ձևաչափը քննարկելու համար։",
       button: "Ստանալ խորհրդատվություն",
     },
+    blog: {
+      eyebrow: "Բլոգ",
+      heading: "ReloPartner Armenia բլոգ",
+      intro:
+        "Գործնական ուղեցույցներ և մասնագիտական վերլուծություններ Հայաստան տեղափոխվելու, բիզնեսի, կացության և Հայաստանում կյանքի մասին։",
+      all: "Բոլորը",
+      categories: {
+        relocation: "Տեղափոխություն",
+        residence: "Կացություն և քաղաքացիություն",
+        business: "Բիզնես Հայաստանում",
+        tax: "Հարկեր և հաշվապահություն",
+        living: "Կյանքը Հայաստանում",
+        banking: "Բանկեր և ֆինանսներ",
+      },
+      readArticle: "Կարդալ հոդվածը",
+      readMore: "Կարդալ ավելին",
+      backToBlog: "Վերադառնալ բլոգ",
+      tocHeading: "Բովանդակություն",
+      share: "Կիսվել",
+      shareCopied: "Հղումը պատճենվեց",
+      readingTime: (minutes: number) => `${minutes} րոպե ընթերցում`,
+      relatedHeading: "Առնչվող հոդվածներ",
+      empty: "Այստեղ դեռ հոդվածներ չկան։ Այցելեք ավելի ուշ։",
+      ctaHeading: "Պլանավորու՞մ եք տեղափոխվել Հայաստան։",
+      ctaSub:
+        "Ստացեք մասնագիտական աջակցություն կացության, բիզնեսի գրանցման, հաշվապահության և տեղափոխության այլ ծառայությունների հարցերում։",
+      ctaButton: "Ստանալ խորհրդատվություն",
+    },
     servicesPage: {
       eyebrow: "Ծառայություններ",
       heading: "Հայաստան տեղափոխման ծառայություններ ֆիզիկական անձանց և բիզնեսի համար",
@@ -1127,6 +1260,11 @@ export const translations: Record<Locale, Dictionary> = {
         title: "Ռելոկացիա Հայաստան | Բիզնեսի գրանցում և Բնակության թույլտվություն",
         description:
           "Ռելոկացիա Հայաստան՝ ամբողջական աջակցությամբ։ Օգնում ենք տեղափոխվել Հայաստան, գրանցել բիզնես, ստանալ բնակության թույլտվություն, հարկային և իրավաբանական աջակցություն։",
+      },
+      blog: {
+        title: "Բլոգ | Հայաստան տեղափոխվելու, բիզնեսի և կացության ուղեցույցներ",
+        description:
+          "Գործնական ուղեցույցներ և մասնագիտական վերլուծություններ Հայաստան տեղափոխվելու մասին՝ կացության թույլտվություն, ընկերության գրանցում, հարկեր, բանկեր և առօրյա կյանք։",
       },
       services: {
         title: "Ռելոկացիայի ծառայություններ Հայաստանում | Բիզնես և Իմիգրացիա",
