@@ -1,5 +1,5 @@
 ---
-image: /images/blog/yerevan.avif
+image: /images/blog/cascade-complex.avif
 imageFocus: center
 category: relocation
 date: 1906-09-11
