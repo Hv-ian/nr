@@ -1,11 +1,12 @@
 ---
-title: "Cost of Living in Armenia"
-description: "Get a clear overview of housing, food, transport, healthcare and other everyday expenses in Armenia."
-category: living
-date: "2026-08-24"
+title: Cost of Living in Armenia
+description: Get a clear overview of housing, food, transport, healthcare and
+  other everyday expenses in Armenia.
 image: /images/blog/cascade-complex.avif
+imageFocus: top
+category: living
+date: 2026-08-24
 ---
-
 Armenia is generally affordable by European standards, though the gap has narrowed in recent years, particularly in Yerevan.
 
 ## Housing
@@ -36,4 +37,4 @@ A single person living modestly outside the centre will spend considerably less 
 
 The honest summary is that Armenia rewards those willing to live somewhat locally, and is merely reasonable for those who want to import their previous lifestyle wholesale.
 
-> **Keep in mind:** Requirements and procedures can change. It is always best to check the latest information or get professional assistance.
+>
