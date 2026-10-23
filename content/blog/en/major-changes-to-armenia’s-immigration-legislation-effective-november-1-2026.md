@@ -1,5 +1,5 @@
 ---
-title: Major Changes to Armenia’s Immigration Legislation Effective November 1, 2026
+title: "Armenia Immigration Law Changes: November 2026"
 description: "Starting November 1, 2026, significant changes to Armenia’s
   immigration legislation will come into effect. The new rules will affect
   residence permit application procedures, eligibility requirements, and state
